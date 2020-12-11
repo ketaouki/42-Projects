@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 16:07:34 by ketaouki          #+#    #+#             */
-/*   Updated: 2020/12/11 09:46:08 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2020/12/11 15:17:16 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strchr(char *str, int c)
+char	*ft_strchr(char *str, char c)
 {
 	int i;
 
@@ -33,8 +33,6 @@ char	*ft_strchr(char *str, int c)
 			return ((char *)str + (i + 1));
 		i++;
 	}
-	if (c == '\0')
-		return ((char *)str + (i + 1));
 	return (NULL);
 }
 
@@ -100,4 +98,24 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	}
 	s2[i] = '\0';
 	return (s2);
+}
+
+char	*ft_strdup(char *src)
+{
+	int		i;
+	char	*dest;
+
+	i = 0;
+	while (src[i])
+		i++;
+	if (!(dest = malloc(sizeof(char) * i + 1)))
+		return (0);
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
