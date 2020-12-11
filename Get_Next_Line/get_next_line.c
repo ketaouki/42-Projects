@@ -6,38 +6,48 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 16:07:32 by ketaouki          #+#    #+#             */
-/*   Updated: 2020/12/10 15:32:18 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2020/12/11 09:46:28 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+int	ft_len_nl(char *str, int c)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
+	}
+	return (i);
+}
 
 int	get_next_line(int fd, char **line)
 {
-	char		tmp[BUFFER_SIZE + 1];
-	static char	*save;
+	char		buffer[BUFFER_SIZE + 1];
+	static char	*sauvegarde;
 	int			r;
 
 	r = 1;
-	if (fd < 0 || BUFFER_SIZE <= 0 || *line == NULL) // CAS ERREUR
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (-1);
-	if (save == NULL)
-		save = calloc((BUFFER_SIZE + 1), sizeof(char));
-	while ((r = read(fd, tmp, BUFFER_SIZE)) > 0)
+	if (sauvegarde == NULL)
+		sauvegarde = calloc((BUFFER_SIZE + 1), sizeof(char));
+	while ((!(ft_strchr(sauvegarde, '\n')) && (r = read(fd, buffer, BUFFER_SIZE) > 0)))
 	{
-		save = ft_strjoin(save, tmp);
+		sauvegarde = ft_strjoin(sauvegarde, buffer);
 	}
-	*line = ft_strjoin(save, *line);
-	//printf("line : %s\n", *line);
-	printf("save : %s\n", save);
-	// save = ft_substr(tmp,);
-
-	if (r == -1) //CAS ERREUR LORS DE LA LECTURE
+	*line = ft_substr(sauvegarde, 0, (ft_len_nl(sauvegarde, '\n')));
+	sauvegarde = ft_substr(ft_strchr(sauvegarde, '\n'), 0, ft_strlen(ft_strchr(sauvegarde,'\n')));
+	if (r == -1)
 			return (-1);
-	if (r == 0) //FIN DE LECTURE
+	if (r == 0)
 			return (0);
-	return (0);
+	return (1);
 }
 
 int	main(void)
@@ -49,17 +59,16 @@ int	main(void)
 	str = malloc(sizeof(char) * 256);
 	i = 0;
 	fd = open("text.txt", O_RDONLY);
-	while (i < 5)
+	while (i < 10)
 	{
-		//printf("str before : %s\n", str);
+		printf("str before : %s\n", str);
 		get_next_line(fd, &str);
 		//printf("str after : %s\n", str);
 		free(str);
-		str = 0;
 	 	i++;
 	}
 
-	/*while(1)
-	;*/
+	while(1)
+		;
     return 0;
 }

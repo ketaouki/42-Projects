@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 16:07:37 by ketaouki          #+#    #+#             */
-/*   Updated: 2020/12/10 15:19:45 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2020/12/11 09:25:05 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 size_t	ft_strlen(char *str);
+char	*ft_strchr(char *str, int c);
+int		ft_len_nl(char *str, int c);
 
 
 #endif
