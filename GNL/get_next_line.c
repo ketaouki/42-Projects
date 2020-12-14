@@ -13,8 +13,6 @@ int	ft_len_nl(char *str, char c)
 		}
 		i++;
 	}
-	// if (str[0] == '\0')
-	// 	return (1);
 	return (i);
 }
 
@@ -59,6 +57,7 @@ int	get_next_line(int fd, char **line)
 		buffer[BUFFER_SIZE] = '\0';
 		save = ft_strjoin(save, buffer);
 	}
+	//printf("SAVE = %s\n", save);
 	if (lecture == - 1)
 	{
 		free(save);
@@ -71,6 +70,7 @@ int	get_next_line(int fd, char **line)
 		return (0);
 	}
 	*line = ft_substr(save, 0, (ft_len_nl(save, '\n')));
+	//printf("LINE = %s\n", *line);
 	save = ft_substr(next, 1, ft_strlen(next));
 	return (1);
 }

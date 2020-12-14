@@ -3,7 +3,8 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-
+# include <fcntl.h>
+# include <stdio.h>
 
 int		get_next_line(int fd, char **line);
 char	*ft_recup(char *str, char c);
