@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/05 16:07:34 by ketaouki          #+#    #+#             */
-/*   Updated: 2020/12/11 15:30:01 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2020/12/13 14:37:45 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	j = ft_strlen(s1) + ft_strlen(s2);
 	k = 0;
-	dest = calloc((j + 1), sizeof(char));
+	if(!(dest = calloc((j + 1), sizeof(char))))
+		return (NULL);
 	j = 0;
 	while (s1[j])
 		dest[k++] = s1[j++];

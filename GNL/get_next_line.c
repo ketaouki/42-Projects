@@ -1,5 +1,46 @@
 #include "get_next_line.h"
 
+int	ft_len_nl(char *str, char c)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+		{
+			return (i);
+		}
+		i++;
+	}
+	// if (str[0] == '\0')
+	// 	return (1);
+	return (i);
+}
+
+char	*ft_recup(char *str, char c)
+{
+	char	*recup;
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (str[i] != c && str[i])
+		i++;
+	if (str[i] == c && str[i])
+	{
+		while (str[i + j])
+			j++;
+		recup = ft_calloc(sizeof(char), j + 1);
+		j = 0;
+		while(str[i])
+			recup[j++] = str[i++];
+		recup[j] = '\0';
+		return (recup);
+	}
+	return (0);
+}
 
 int	get_next_line(int fd, char **line)
 {
@@ -9,21 +50,27 @@ int	get_next_line(int fd, char **line)
 	int			lecture;
 
 	lecture = 0;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || line == NULL)
 		return (-1);
 	if (save == NULL)
 		save = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	while (!(next = ft_strchr(save, '\n')) && (lecture = read(fd, buffer, BUFFER_SIZE) > 0))
+	while (!(next = ft_recup(save, '\n')) && (lecture = read(fd, buffer, BUFFER_SIZE) != 0))
 	{
+		buffer[BUFFER_SIZE] = '\0';
 		save = ft_strjoin(save, buffer);
+	}
+	if (lecture == - 1)
+	{
+		free(save);
+		return (-1);
 	}
 	if (!ft_strchr(save, '\n'))
 	{
 		*line = ft_substr(save, 0, ft_strlen(save));
+		save = NULL;
 		return (0);
 	}
 	*line = ft_substr(save, 0, (ft_len_nl(save, '\n')));
-	free(save);
-	save = ft_substr(next, 0, ft_strlen(next));
+	save = ft_substr(next, 1, ft_strlen(next));
 	return (1);
 }

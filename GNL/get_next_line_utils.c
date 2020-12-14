@@ -36,20 +36,24 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	j = ft_strlen(s1) + ft_strlen(s2);
 	k = 0;
-	dest = calloc((j + 1), sizeof(char));
+	if (!(dest = malloc(sizeof(char) * j + 1)))
+		return (NULL);
 	j = 0;
 	while (s1[j])
-		dest[k++] = s1[j++];
-	if(s1[j] != '\n')
 	{
-		j = 0;
-		while (s2[j])
-			dest[k++] = s2[j++];
+		dest[k++] = s1[j++];
+	}
+	j = 0;
+	while (s2[j])
+	{
+		dest[k++] = s2[j++];
 	}
 	dest[k] = '\0';
 	free(s1);
+	s1 = 0;
 	return (dest);
 }
+
 
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {
@@ -71,23 +75,9 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 			s2[i++] = s[start++];
 	}
 	s2[i] = '\0';
+	free(s);
+	s = 0;
 	return (s2);
-}
-
-int	ft_len_nl(char *str, char c)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-		{
-			return (i);
-		}
-		i++;
-	}
-	return (i);
 }
 
 char	*ft_strchr(char *str, char c)
