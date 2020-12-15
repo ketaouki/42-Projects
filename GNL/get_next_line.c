@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/15 15:44:44 by ketaouki          #+#    #+#             */
+/*   Updated: 2020/12/15 15:47:59 by ketaouki         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-int	ft_len_nl(char *str, char c)
+int		ft_len_nl(char *str, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -19,8 +31,8 @@ int	ft_len_nl(char *str, char c)
 char	*ft_recup(char *str, char c)
 {
 	char	*recup;
-	int i;
-	int j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -32,7 +44,7 @@ char	*ft_recup(char *str, char c)
 			j++;
 		recup = ft_calloc(sizeof(char), j + 1);
 		j = 0;
-		while(str[i])
+		while (str[i])
 			recup[j++] = str[i++];
 		recup[j] = '\0';
 		return (recup);
@@ -40,7 +52,7 @@ char	*ft_recup(char *str, char c)
 	return (0);
 }
 
-int	get_next_line(int fd, char **line)
+int		get_next_line(int fd, char **line)
 {
 	char		buffer[BUFFER_SIZE + 1];
 	static char	*save;
@@ -51,7 +63,7 @@ int	get_next_line(int fd, char **line)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (-1);
 	if (save == NULL)
-		if(!(save = ft_calloc(BUFFER_SIZE + 1, sizeof(char))))
+		if (!(save = ft_calloc(BUFFER_SIZE + 1, sizeof(char))))
 			return (-1);
 	while (!(next = ft_recup(save, '\n')))
 	{
@@ -61,7 +73,7 @@ int	get_next_line(int fd, char **line)
 			save = NULL;
 			return (0);
 		}
-		if (lecture == - 1)
+		if (lecture == -1)
 			return (-1);
 		buffer[lecture] = '\0';
 		save = ft_strjoin(save, buffer);

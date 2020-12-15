@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/15 15:43:19 by ketaouki          #+#    #+#             */
+/*   Updated: 2020/12/15 15:43:56 by ketaouki         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 size_t	ft_strlen(char *str)
@@ -40,19 +52,15 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	j = 0;
 	while (s1[j])
-	{
 		dest[k++] = s1[j++];
-	}
 	j = 0;
 	while (s2[j])
-	{
 		dest[k++] = s2[j++];
-	}
 	dest[k] = '\0';
 	free(s1);
+	s1 = NULL;
 	return (dest);
 }
-
 
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {
@@ -75,48 +83,6 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	}
 	s2[i] = '\0';
 	free(s);
+	s = NULL;
 	return (s2);
-}
-
-// char	*ft_substr(char *s, unsigned int start, size_t len)
-// {
-// 	char		*tab;
-// 	size_t		i;
-// 	size_t		s_len;
-
-// 	if (!s)
-// 		return (0);
-// 	s_len = ft_strlen(s);
-// 	if (s_len < start)
-// 	{
-// 		if (!(tab = ft_calloc(sizeof(char), 1)))
-// 			return (0);
-// 		tab[0] = '\0';
-// 		return (tab);
-// 	}
-// 	if (!(tab = ft_calloc(sizeof(char), len + 1)))
-// 		return (0);
-// 	i = 0;
-// 	while (i < len)
-// 	{
-// 		tab[i] = s[start + i];
-// 		i++;
-// 	}
-// 	tab[i] = '\0';
-// 	free(s);
-// 	return (tab);
-// }
-
-char	*ft_strchr(char *str, char c)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return ((char *)str + (i + 1));
-		i++;
-	}
-	return (NULL);
 }
