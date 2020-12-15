@@ -63,7 +63,7 @@ int	get_next_line(int fd, char **line)
 		}
 		if (lecture == - 1)
 			return (-1);
-		buffer[BUFFER_SIZE] = '\0';
+		buffer[lecture] = '\0';
 		save = ft_strjoin(save, buffer);
 	}
 	*line = ft_substr(save, 0, (ft_len_nl(save, '\n')));
