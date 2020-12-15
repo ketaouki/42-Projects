@@ -48,29 +48,25 @@ int	get_next_line(int fd, char **line)
 	int			lecture;
 
 	lecture = 0;
-	if (fd < 0 || BUFFER_SIZE <= 0 || line == NULL)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (-1);
 	if (save == NULL)
-		save = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	while (!(next = ft_recup(save, '\n')) && (lecture = read(fd, buffer, BUFFER_SIZE) != 0))
+		if(!(save = ft_calloc(BUFFER_SIZE + 1, sizeof(char))))
+			return (-1);
+	while (!(next = ft_recup(save, '\n')))
 	{
+		if ((lecture = read(fd, buffer, BUFFER_SIZE)) == 0)
+		{
+			*line = ft_substr(save, 0, ft_strlen(save));
+			save = NULL;
+			return (0);
+		}
+		if (lecture == - 1)
+			return (-1);
 		buffer[BUFFER_SIZE] = '\0';
 		save = ft_strjoin(save, buffer);
 	}
-	//printf("SAVE = %s\n", save);
-	if (lecture == - 1)
-	{
-		free(save);
-		return (-1);
-	}
-	if (!ft_strchr(save, '\n'))
-	{
-		*line = ft_substr(save, 0, ft_strlen(save));
-		save = NULL;
-		return (0);
-	}
 	*line = ft_substr(save, 0, (ft_len_nl(save, '\n')));
-	//printf("LINE = %s\n", *line);
 	save = ft_substr(next, 1, ft_strlen(next));
 	return (1);
 }
