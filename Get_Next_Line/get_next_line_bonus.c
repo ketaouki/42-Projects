@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/15 15:44:44 by ketaouki          #+#    #+#             */
-/*   Updated: 2020/12/15 15:52:26 by ketaouki         ###   ########lyon.fr   */
+/*   Created: 2020/12/16 07:39:44 by ketaouki          #+#    #+#             */
+/*   Updated: 2020/12/16 07:55:11 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int		ft_len_nl(char *str, char c)
 {
@@ -55,30 +55,30 @@ char	*ft_recup(char *str, char c)
 int		get_next_line(int fd, char **line)
 {
 	char		buffer[BUFFER_SIZE + 1];
-	static char	*save;
+	static char	*save[4096];
 	char		*next;
 	int			lecture;
 
 	lecture = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (-1);
-	if (save == NULL)
-		if (!(save = ft_calloc(BUFFER_SIZE + 1, sizeof(char))))
+	if (save[fd] == NULL)
+		if (!(save[fd] = ft_calloc(BUFFER_SIZE + 1, sizeof(char))))
 			return (-1);
-	while (!(next = ft_recup(save, '\n')))
+	while (!(next = ft_recup(save[fd], '\n')))
 	{
 		if ((lecture = read(fd, buffer, BUFFER_SIZE)) == 0)
 		{
-			*line = ft_substr(save, 0, ft_strlen(save));
-			save = NULL;
+			*line = ft_substr(save[fd], 0, ft_strlen(save[fd]));
+			save[fd] = NULL;
 			return (0);
 		}
 		if (lecture == -1)
 			return (-1);
 		buffer[lecture] = '\0';
-		save = ft_strjoin(save, buffer);
+		save[fd] = ft_strjoin(save[fd], buffer);
 	}
-	*line = ft_substr(save, 0, (ft_len_nl(save, '\n')));
-	save = ft_substr(next, 1, ft_strlen(next));
+	*line = ft_substr(save[fd], 0, (ft_len_nl(save[fd], '\n')));
+	save[fd] = ft_substr(next, 1, ft_strlen(next));
 	return (1);
 }
