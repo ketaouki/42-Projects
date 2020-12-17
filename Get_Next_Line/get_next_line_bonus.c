@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 07:39:44 by ketaouki          #+#    #+#             */
-/*   Updated: 2020/12/16 07:55:11 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2020/12/17 07:44:15 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,33 +52,38 @@ char	*ft_recup(char *str, char c)
 	return (0);
 }
 
+int		the_line(char **line, char **save, char **next, int ret)
+{
+	*line = ft_substr(*save, 0, (ft_len_nl(*save, '\n')));
+	*save = ft_substr(*next, 1, ft_strlen(*next));
+	return (ret);
+}
+
 int		get_next_line(int fd, char **line)
 {
 	char		buffer[BUFFER_SIZE + 1];
 	static char	*save[4096];
 	char		*next;
-	int			lecture;
+	int			re;
 
-	lecture = 0;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	re = 0;
+	if (fd < 0 || BUFFER_SIZE <= 0 || line == NULL)
 		return (-1);
 	if (save[fd] == NULL)
 		if (!(save[fd] = ft_calloc(BUFFER_SIZE + 1, sizeof(char))))
 			return (-1);
 	while (!(next = ft_recup(save[fd], '\n')))
 	{
-		if ((lecture = read(fd, buffer, BUFFER_SIZE)) == 0)
+		if ((re = read(fd, buffer, BUFFER_SIZE)) == 0)
 		{
 			*line = ft_substr(save[fd], 0, ft_strlen(save[fd]));
 			save[fd] = NULL;
 			return (0);
 		}
-		if (lecture == -1)
+		if (re == -1)
 			return (-1);
-		buffer[lecture] = '\0';
+		buffer[re] = '\0';
 		save[fd] = ft_strjoin(save[fd], buffer);
 	}
-	*line = ft_substr(save[fd], 0, (ft_len_nl(save[fd], '\n')));
-	save[fd] = ft_substr(next, 1, ft_strlen(next));
-	return (1);
+	return (the_line(line, save, &next, 1));
 }
