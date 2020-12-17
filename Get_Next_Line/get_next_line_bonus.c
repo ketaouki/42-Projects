@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 07:39:44 by ketaouki          #+#    #+#             */
-/*   Updated: 2020/12/17 07:44:15 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2020/12/17 07:59:59 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int		ft_len_nl(char *str, char c)
 	return (i);
 }
 
-char	*ft_recup(char *str, char c)
+char	*ft_rec(char *str, char c)
 {
-	char	*recup;
+	char	*rec;
 	int		i;
 	int		j;
 
@@ -42,12 +42,12 @@ char	*ft_recup(char *str, char c)
 	{
 		while (str[i + j])
 			j++;
-		recup = ft_calloc(sizeof(char), j + 1);
+		rec = ft_calloc(sizeof(char), j + 1);
 		j = 0;
 		while (str[i])
-			recup[j++] = str[i++];
-		recup[j] = '\0';
-		return (recup);
+			rec[j++] = str[i++];
+		rec[j] = '\0';
+		return (rec);
 	}
 	return (0);
 }
@@ -64,26 +64,26 @@ int		get_next_line(int fd, char **line)
 	char		buffer[BUFFER_SIZE + 1];
 	static char	*save[4096];
 	char		*next;
-	int			re;
+	int			r;
 
-	re = 0;
+	r = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0 || line == NULL)
 		return (-1);
 	if (save[fd] == NULL)
 		if (!(save[fd] = ft_calloc(BUFFER_SIZE + 1, sizeof(char))))
 			return (-1);
-	while (!(next = ft_recup(save[fd], '\n')))
+	while (!(next = ft_rec(save[fd], '\n')))
 	{
-		if ((re = read(fd, buffer, BUFFER_SIZE)) == 0)
+		if ((r = read(fd, buffer, BUFFER_SIZE)) == 0)
 		{
 			*line = ft_substr(save[fd], 0, ft_strlen(save[fd]));
 			save[fd] = NULL;
 			return (0);
 		}
-		if (re == -1)
+		if (r == -1)
 			return (-1);
-		buffer[re] = '\0';
+		buffer[r] = '\0';
 		save[fd] = ft_strjoin(save[fd], buffer);
 	}
-	return (the_line(line, save, &next, 1));
+	return (the_line(line, &save[fd], &next, 1));
 }

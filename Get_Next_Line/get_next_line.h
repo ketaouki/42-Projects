@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 15:46:15 by ketaouki          #+#    #+#             */
-/*   Updated: 2020/12/16 08:54:41 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2020/12/17 07:52:20 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 
 int		get_next_line(int fd, char **line);
-char	*ft_recup(char *str, char c);
+char	*ft_rec(char *str, char c);
 int		ft_len_nl(char *str, char c);
 size_t	ft_strlen(char *str);
 void	*ft_calloc(size_t nmemb, size_t size);
