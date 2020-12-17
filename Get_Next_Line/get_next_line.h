@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 15:46:15 by ketaouki          #+#    #+#             */
-/*   Updated: 2020/12/17 07:52:20 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2020/12/17 08:04:35 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 int		the_line(char **line, char **save, char **next, int ret);
+int		free_error(char **save, int ret);
 
 #endif

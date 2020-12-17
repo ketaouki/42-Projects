@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 07:39:44 by ketaouki          #+#    #+#             */
-/*   Updated: 2020/12/17 07:59:59 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2020/12/17 08:04:25 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,12 @@ int		the_line(char **line, char **save, char **next, int ret)
 	return (ret);
 }
 
+int		free_error(char **save, int ret)
+{
+	free(*save);
+	return (ret);
+}
+
 int		get_next_line(int fd, char **line)
 {
 	char		buffer[BUFFER_SIZE + 1];
@@ -81,7 +87,7 @@ int		get_next_line(int fd, char **line)
 			return (0);
 		}
 		if (r == -1)
-			return (-1);
+			return (free_error(&save[fd], -1));
 		buffer[r] = '\0';
 		save[fd] = ft_strjoin(save[fd], buffer);
 	}
