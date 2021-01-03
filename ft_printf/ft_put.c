@@ -10,23 +10,23 @@ void	ft_putchar(char c)
 
 int		ft_putnbr(int n)
 {
-	long	i;
+	long nb;
 	int nb_caractere_imprime;
 
-	i = 0;
+	nb = (long)n;
 	nb_caractere_imprime = 0;
-	if (n < 0)
+	if (nb < 0)
 	{
 		ft_putchar('-');
-		n = n * -1;
+		nb = nb * -1;
 		nb_caractere_imprime++;
 	}
-	if (n > 9)
+	if (nb > 9)
 	{
-		ft_putnbr(n / 10);
+		ft_putnbr(nb / 10);
 		nb_caractere_imprime++;
 	}
-	ft_putchar((n % 10) + '0');
+	ft_putchar((nb % 10) + '0');
 	nb_caractere_imprime++;
 	return (nb_caractere_imprime);
 }

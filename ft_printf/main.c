@@ -3,13 +3,12 @@
 
 int main(void)
 {
-	int d = 3;
-	int lol = 20;
-	char c = 'a';
-	char *str = "lol";
+	int d = 0;
 
-	c = d;
-	ft_printf("FT_PRINTF == : %%p = %-15p %%d = %-20d", str, d);
-	printf("\nPRINTF ===== : %%p = %-15p %%d = %*d\n", str, lol, d);
+	ft_printf("FT_PRINTF == : %.d", d);
+	printf("\nPRINTF ===== : %.d", d);
+
+	//printf("%d == \n", ft_printf("%.d", d));
+	//printf("%d == \n", printf("%.d", d));
 	return (0);
 }
