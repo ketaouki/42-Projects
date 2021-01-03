@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int ft_conversion(const char *input, va_list args)
+int	ft_conversion(const char *input, va_list args)
 {
 	char *str;
 	int integer;
@@ -88,7 +88,7 @@ int ft_conversion(const char *input, va_list args)
 	}
 	return (count);
 }
-int		ft_printf(const char *input, ...)
+int	ft_printf(const char *input, ...)
 {
 	va_list args;
 	int count;

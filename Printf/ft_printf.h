@@ -12,7 +12,8 @@ void	ft_putstr(char *str);
 void	ft_putnbr(int n);
 void	ft_putnbr_base(unsigned int nbr, char *base);
 void	ft_putadress_hexa(void *str, char *base);
-
+int		ft_conversion(const char *input, va_list args);
+int		ft_atoi(const char *str);
 
 
 #endif

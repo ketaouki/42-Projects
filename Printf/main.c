@@ -8,15 +8,16 @@ int main(void)
 	int d;
 	int t;
 
-	d = -10;
+	d = 10;
 	t = 3;
 	c = 'a';
 	str = "aaze";
-	ft_printf("ft_printf c = %c, s = %s, p = %p, d = %d, i = %i, u = %u, x = %x, X = %X, %%", c , str, str, d, d, d, d, d);
-	printf("\nprintf    c = %c, s = %s, p = %p, d = %d, i = %i, u = %u, x = %x, X = %X, %%\n", c , str, str, d, d, d, d, d);
+	//ft_printf("ft_printf c = %c, s = %s, p = %p, d = %d, i = %i, u = %u, x = %x, X = %X, %%", c , str, str, d, d, d, d, d);
+	//printf("\nprintf    c = %c, s = %s, p = %p, d = %d, i = %i, u = %u, x = %x, X = %X, %%\n", c , str, str, d, d, d, d, d);
 
 
-	//ft_printf("%p", str);
+	printf("%3d\n", d);
+	ft_printf("%3d", d);
 
 
 	//printf("\n%x\n", (unsigned int)str);
