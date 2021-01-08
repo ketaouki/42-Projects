@@ -21,6 +21,21 @@ int	ft_conversion(const char **input, va_list args, va_list copy)
 				while (**input >= '0' && **input <= '9')
 				(*input)++;
 		}
+		if (**input == '*')
+		{
+			(*input)++;
+			taille = va_arg(args, int);
+			if (taille < 0)
+			{
+				taille *= -1;
+				nb_caractere_imprime = ft_type(&input, args);
+				while (nb_caractere_imprime < taille)
+				{
+					ft_putchar(' ');
+					nb_caractere_imprime++;
+				}
+			}
+		}
 		nb_caractere_imprime = ft_type(&input, args);
 		while (nb_caractere_imprime < taille)
 		{

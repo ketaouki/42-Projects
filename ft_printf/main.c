@@ -3,12 +3,14 @@
 
 int main(void)
 {
-	int d = 0;
+	int c = 0;
 
-	ft_printf("FT_PRINTF == : %.d", d);
-	printf("\nPRINTF ===== : %.d", d);
+	//ft_printf("FT_PRINTF == : %*c%*c", -10, '0', 1, '1');
+	//printf("\nPRINTF ===== : %*c%*c\n", -10, '0', 1, '1');
 
-	//printf("%d == \n", ft_printf("%.d", d));
-	//printf("%d == \n", printf("%.d", d));
+//ft_printf("FT_PRINTF == : %*c", -10, '0');
+//printf("\nPRINTF ===== : %*c", -10, '0');
+	printf(" == %d\n", 	ft_printf("-%-2c * -%2c* ", 0, 0));
+	printf(" == %d\n", 	printf("-%-2c * -%2c* ", 0, 0));
 	return (0);
 }

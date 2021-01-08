@@ -18,6 +18,10 @@ int		ft_putadress_hexa(void *str, char *base);
 int		ft_strlen( char *str);
 int		ft_type(const char ***input, va_list args);
 
-int	ft_type_count(const char ***input, va_list args);
+int		ft_type_count(const char ***input, va_list args);
+int		ft_putnbr_count(int n);
+int		ft_putstr_count(char *str);
+int		ft_putnbr_base_count(unsigned int nbr, char *base);
+int		ft_putadress_hexa_count(void *str, char *base);
 
 #endif
