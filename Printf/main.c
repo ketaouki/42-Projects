@@ -3,26 +3,14 @@
 
 int main(void)
 {
-	char *str;
-	char c;
-	int d;
-	int t;
+	int c = 0;
 
-	d = 10;
-	t = 3;
-	c = 'a';
-	str = "aaze";
-	//ft_printf("ft_printf c = %c, s = %s, p = %p, d = %d, i = %i, u = %u, x = %x, X = %X, %%", c , str, str, d, d, d, d, d);
-	//printf("\nprintf    c = %c, s = %s, p = %p, d = %d, i = %i, u = %u, x = %x, X = %X, %%\n", c , str, str, d, d, d, d, d);
+	//ft_printf("FT_PRINTF == : %*c%*c", -10, '0', 1, '1');
+	//printf("\nPRINTF ===== : %*c%*c\n", -10, '0', 1, '1');
 
-
-	printf("%3d\n", d);
-	ft_printf("%3d", d);
-
-
-	//printf("\n%x\n", (unsigned int)str);
-	//printf("\n%p", str);
-	//printf("%d\n", *str);
-
+//ft_printf("FT_PRINTF == : %*c", -10, '0');
+//printf("\nPRINTF ===== : %*c", -10, '0');
+	printf(" == %d\n", 	ft_printf("-%-2c * -%2c* ", 0, 0));
+	printf(" == %d\n", 	printf("-%-2c * -%2c* ", 0, 0));
 	return (0);
 }
