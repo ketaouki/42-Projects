@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 07:39:47 by ketaouki          #+#    #+#             */
-/*   Updated: 2020/12/16 07:39:48 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2020/12/17 11:07:01 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ char	*ft_strjoin(char *s1, char *s2)
 	j = ft_strlen(s1) + ft_strlen(s2);
 	k = 0;
 	if (!(dest = malloc(sizeof(char) * j + 1)))
+	{
+		free(s1);
 		return (NULL);
+	}
 	j = 0;
 	while (s1[j])
 		dest[k++] = s1[j++];
@@ -75,7 +78,10 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	if (start > ft_strlen(s))
 		len = 0;
 	if (!(s2 = malloc(sizeof(char) * (len + 1))))
+	{
+		free(s);
 		return (NULL);
+	}
 	if (start < ft_strlen(s))
 	{
 		while (i < len)

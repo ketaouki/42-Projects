@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 15:44:44 by ketaouki          #+#    #+#             */
-/*   Updated: 2020/12/17 08:04:18 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2020/12/17 11:32:35 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ char	*ft_rec(char *str, char c)
 	{
 		while (str[i + j])
 			j++;
-		rec = ft_calloc(sizeof(char), j + 1);
+		if (!(rec = ft_calloc(sizeof(char), j + 1)))
+			return (NULL);
 		j = 0;
 		while (str[i])
 			rec[j++] = str[i++];
