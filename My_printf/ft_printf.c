@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:12:56 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/14 11:24:16 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/18 09:58:00 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,40 @@ int	ft_conversion(const char **input, va_list args, va_list copy)
 				}
 			}
 		}
-		nb_caractere_imprime = ft_type(&input, args);
+		if (**input == '.')
+		{
+			(*input)++;
+			if (**input >= '0' && **input <= '9')
+			{
+				taille = ft_atoi(*input);
+				while (**input >= '0' && **input <= '9')
+					(*input)++;
+			}
+			test = ft_type_count(&input, copy);
+			while ((nb_caractere_imprime + test) < taille)
+			{
+				ft_putchar('0');
+				nb_caractere_imprime++;
+			}
+		}
+		if (**input == 'c' || **input == 's' || **input == 'p' ||
+				**input == 'd' || **input == 'i' || **input == 'u' ||
+				**input == 'x' || **input == 'X' || **input == '%')
+			nb_caractere_imprime = ft_type(&input, args);
 		while (nb_caractere_imprime < taille)
 		{
 			ft_putchar(' ');
+			nb_caractere_imprime++;
+		}
+		while (**input)
+		{
+			if (**input == '%')
+			{
+			(*input)++;
+			nb_caractere_imprime += ft_conversion(input, args, copy);
+			}
+			ft_putchar(**input);
+			(*input)++;
 			nb_caractere_imprime++;
 		}
 	}
@@ -98,6 +128,22 @@ int	ft_conversion(const char **input, va_list args, va_list copy)
 		taille = ft_atoi(*input);
 		while (**input >= '0' && **input <= '9')
 			(*input)++;
+		if (**input == '.')
+		{
+			(*input)++;
+			if (**input >= '0' && **input <= '9')
+			{
+				taille = ft_atoi(*input);
+				while (**input >= '0' && **input <= '9')
+					(*input)++;
+			}
+			test = ft_type_count(&input, copy);
+			while ((nb_caractere_imprime + test) < taille)
+			{
+				ft_putchar('0');
+				nb_caractere_imprime++;
+			}
+		}
 		test = ft_type_count(&input, copy);
 		while ((nb_caractere_imprime + test) < taille)
 		{

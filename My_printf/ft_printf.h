@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:13:19 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/14 11:27:01 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/15 11:26:50 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdio.h>
+
+//		STRUCUTRE		//
+
+typedef	struct s_input
+{
+	int	taille;
+	int	largeur;
+}	t_input;
+
+
 
 //		FT_PRINTF_UTILS	//
 

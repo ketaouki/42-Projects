@@ -61,12 +61,12 @@ int	ft_type(const char ***input, va_list args)
 		nb_caractere_imprime += ft_putnbr_base(numunsigned, "0123456789ABCDEF");
 		(**input)++;
 	}
-	if (***input == '%')
-	{
-		ft_putchar('%');
-		nb_caractere_imprime++;
-		(**input)++;
-	}
+	// if (***input == '%')
+	// {
+	// 	ft_putchar('%');
+	// 	nb_caractere_imprime++;
+	// 	(**input)++;
+	// }
 	return (nb_caractere_imprime);
 }
 
