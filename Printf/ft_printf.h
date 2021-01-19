@@ -1,27 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/14 11:13:19 by ketaouki          #+#    #+#             */
+/*   Updated: 2021/01/19 15:49:05 by ketaouki         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdarg.h>
+# include <stdio.h>
+
+//		STRUCUTRE		//
+
+typedef	struct s_input
+{
+	int		flag_less;
+	int		flag_zero;
+	int		flag_dot;
+	int		flag_star;
+	int		largeur;
+	int		precision;
+	char	type;
+
+}	t_input;
+
+
+
+//		FT_PRINTF_UTILS	//
+
+
+
+//		FT_PRINTF_PUT	//
+
+
+//		FT_PRINTF_COUNT	//
+
+
+//		FT_PRINTF_TYPE	//
+
+
+//		FT_PRINTF		//
 
 int		ft_printf(const char *input, ...);
-int		lecture_chaine(const char *input, va_list args, va_list copy);
-int		ft_conversion(const char **input, va_list args, va_list copy);
-int		ft_putnbr(int n);
-int		ft_atoi(const char *str);
-void	ft_putchar(char c);
-int		ft_putstr(char *str);
-int		ft_putnbr_base(unsigned int nbr, char *base);
-int		ft_putadress_hexa(void *str, char *base);
-int		ft_strlen( char *str);
-int		ft_type(const char ***input, va_list args);
-
-int		ft_type_count(const char ***input, va_list args);
-int		ft_putnbr_count(int n);
-int		ft_putstr_count(char *str);
-int		ft_putnbr_base_count(unsigned int nbr, char *base);
-int		ft_putadress_hexa_count(void *str, char *base);
 
 #endif
