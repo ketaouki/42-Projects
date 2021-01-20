@@ -3,5 +3,6 @@
 
 int main(void)
 {
-	ft_printf("%-2.2d lol %-3.3d", 10, 15);
+	ft_printf("%.-3d");
+	//printf("%-3d", 10);
 }

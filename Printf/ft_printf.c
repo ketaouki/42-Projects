@@ -36,61 +36,62 @@ int		ft_atoi(const char *str)
 }
 
 
-void	ft_initialise_structure(t_input	*flag)
+void	ft_initialise_structure(t_input	*s)
 {
-	flag->flag_less = 0;
-	flag->flag_zero = 0;
-	flag->flag_dot = 0;
-	flag->flag_star = 0;
-	flag->largeur = 0;
-	flag->precision = 0;
+	s->s_less = 0;
+	s->s_zero = 0;
+	s->s_dot = 0;
+	s->s_star = 0;
+	s->width = 0;
+	s->precision = 0;
+	s->index = 0;
 }
 
-void	ft_flag_structure(t_input *flag, const char **input, va_list args)
+void	ft_s_structure(t_input *s, const char **input, va_list args)
 {
 	if (**input >= '1' || **input <= '9')
 	{
-		flag->largeur = ft_atoi(*input);
+		s->width = ft_atoi(*input);
 		while (**input >= '0' && **input <= '9')
 			(*input)++;
 	}
 	if (**input == '-')
 	{
-		flag->flag_less = 1;
+		s->s_less = 1;
 		(*input)++;
-		flag->largeur = 1;
+		s->width = 1;
 		if (**input >= '0' || **input <= '9')
-			flag->largeur = ft_atoi(*input);
+			s->width = ft_atoi(*input);
 		while (**input >= '0' && **input <= '9')
 			(*input)++;
 	}
 	if (**input == '0')
 	{
-		flag->flag_zero = 1;
+		s->s_zero = 1;
 		(*input)++;
-		flag->largeur = 1;
+		s->width = 1;
 		if (**input >= '0' || **input <= '9')
-			flag->largeur = ft_atoi(*input);
+			s->width = ft_atoi(*input);
 		while (**input >= '0' && **input <= '9')
 			(*input)++;
 	}
 	if (**input == '*')
 	{
-		flag->flag_star = 1;
+		s->s_star = 1;
 		(*input)++;
-		flag->largeur = 1;
+		s->width = 1;
 		if (**input >= '0' || **input <= '9')
-			flag->largeur = va_arg(args, int);
+			s->width = va_arg(args, int);
 		while (**input >= '0' && **input <= '9')
 			(*input)++;
 	}
 	if(**input == '.')
 	{
-		flag->flag_dot = 1;
+		s->s_dot = 1;
 		(*input)++;
-		flag->precision = 1;
+		s->precision = 1;
 		if (**input >= '0' || **input <= '9')
-			flag->precision = ft_atoi(*input);
+			s->precision = ft_atoi(*input);
 		while (**input >= '0' && **input <= '9')
 			(*input)++;
 	}
@@ -98,7 +99,7 @@ void	ft_flag_structure(t_input *flag, const char **input, va_list args)
 			**input == 'd' || **input == 'i' || **input == 'u' ||
 			**input == 'x' || **input == 'X' || **input == '%')
 	{
-		flag->type = **input;
+		s->type = **input;
 		(*input)++;
 	}
 }
@@ -106,28 +107,23 @@ void	ft_flag_structure(t_input *flag, const char **input, va_list args)
 int	lecture_chaine(const char *input, va_list args, va_list copy)
 {
 	int	nb_caractere_imprime;
-	t_input flag;
+	t_input s;
 
+	ft_initialise_structure(&s);
 	nb_caractere_imprime = 0;
-	while (*input)
+	while (input[s.index])
 	{
-		if (*input == '%')
+		if (input[s.index] == '%')
 		{
-			input++;
-			ft_initialise_structure(&flag);
-			ft_flag_structure(&flag, &input, args);
-			printf("flag zero = %d\n", flag.flag_zero);
-			printf("flag less = %d\n", flag.flag_less);
-			printf("largeur = %d\n", flag.largeur);
-			printf("flag dot = %d\n", flag.flag_dot);
-			printf("precision = %d\n", flag.precision);
-			printf("type = %c\n", flag.type);
+			s.index++;
+			ft_initialise_structure(&s);
+			ft_s_structure(&s, &input, args);
 			//nb_caractere_imprime += ft_conversion(&input, args, copy);
 		}
 		else
 		{
-			ft_putchar(*input);
-			input++;
+			ft_putchar(input[s.index]);
+			s.index++;
 			nb_caractere_imprime++;
 		}
 	}

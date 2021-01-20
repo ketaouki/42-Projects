@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:13:19 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/19 15:49:05 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 08:25:39 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@
 
 typedef	struct s_input
 {
-	int		flag_less;
-	int		flag_zero;
-	int		flag_dot;
-	int		flag_star;
-	int		largeur;
+	int		s_less;
+	int		s_zero;
+	int		s_dot;
+	int		s_star;
+	int		width;
 	int		precision;
+	int		index;
 	char	type;
 
 }	t_input;
