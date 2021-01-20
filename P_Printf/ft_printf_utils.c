@@ -6,11 +6,21 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:09:22 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/20 11:09:39 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 11:17:45 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
 
 void	ft_initialise_structure(s_input *s)
 {
@@ -21,14 +31,6 @@ void	ft_initialise_structure(s_input *s)
 	s->width = 0;
 	s->precision = 0;
 	s->type = '\0';
-}
-
-void	ft_putchar(char c)
-{
-	unsigned char	d;
-
-	d = (unsigned char)c;
-	write(1, &d, 1);
 }
 
 int		ft_atoi(const char *str)

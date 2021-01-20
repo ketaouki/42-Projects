@@ -6,13 +6,88 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:08:18 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/20 11:12:40 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/20 14:43:39 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	lecture_chaine(const char *input, va_list args, va_list copy, s_input *s)
+void	ft_add_in_structure(s_input *s, const char *input, va_list args)
+{
+	if (input[s->index] == '-' || input[s->index] == '0')
+		ft_less_or_zero(s, input);
+	ft_width(s, input);
+	if (input[s->index] == '*')
+		ft_star(s, input, args);
+	if (input[s->index] == '.')
+		ft_dot(s, input, args);
+	if (input[s->index] == 'c' || input[s->index] == 's' ||
+			input[s->index] == 'p' || input[s->index] == 'd' ||
+			input[s->index] == 'i' || input[s->index] == 'u' ||
+			input[s->index] == 'x' || input[s->index] == 'X' ||
+			input[s->index] == '%')
+	{
+		s->type = input[s->index];
+		(s->index)++;
+	}
+}
+
+int		ft_print(s_input *s, const char *input, va_list args, va_list copy)
+{
+	int	nb_caractere_imprime;
+	int test;
+
+	test = 0;
+	nb_caractere_imprime = 0;
+
+	if (s->f_less == 1)
+	{
+		if (s->f_dot == 1)
+		{
+			if (s->precision < 0)
+			{
+				nb_caractere_imprime += ft_type(s, input, args);
+				while (nb_caractere_imprime++ < (s->precision * (-1)))
+					ft_putchar (' ');
+			}
+			test = ft_type_count(s, input, copy);
+			while((nb_caractere_imprime++) + test < s->precision)
+				ft_putchar('0');
+		}
+		nb_caractere_imprime += ft_type(s, input, args);
+		while ((nb_caractere_imprime++) < s->width)
+			ft_putchar (' ');
+	}
+	if (s->f_dot == 1)
+	{
+		test = ft_type_count(s, input, copy);
+		while((nb_caractere_imprime++) + test < s->precision)
+			ft_putchar('0');
+		nb_caractere_imprime += ft_type(s, input, args);
+	}
+	if (s->f_zero == 1)
+	{
+		test = ft_type_count(s, input, copy);
+		while((nb_caractere_imprime++) + test < s->width)
+			ft_putchar('0');
+		nb_caractere_imprime += ft_type(s, input, args);
+	}
+	if (s->width > 0)
+	{
+		test = ft_type_count(s, input, copy);
+		while((nb_caractere_imprime++) + test < s->width)
+			ft_putchar(' ');
+		nb_caractere_imprime += ft_type(s, input, args);
+	}
+	if (s->type == 'c' || s->type == 's' || s->type == 'p' ||
+		s->type == 'd' || s->type == 'i' || s->type == 'u' ||
+		s->type == 'x' || s->type == 'X' || s->type == '%')
+		nb_caractere_imprime += ft_type(s, input, args);
+	nb_caractere_imprime -= 1;
+	return (nb_caractere_imprime);
+}
+
+int		read_input(const char *input, va_list args, s_input *s, va_list copy)
 {
 	int	nb_caractere_imprime;
 
@@ -24,6 +99,7 @@ int	lecture_chaine(const char *input, va_list args, va_list copy, s_input *s)
 			(s->index)++;
 			ft_initialise_structure(s);
 			ft_add_in_structure(s, input, args);
+			nb_caractere_imprime += ft_print(s, input, args, copy);
 		}
 		else
 		{
@@ -35,7 +111,7 @@ int	lecture_chaine(const char *input, va_list args, va_list copy, s_input *s)
 	return (nb_caractere_imprime);
 }
 
-int	ft_printf(const char *input, ...)
+int		ft_printf(const char *input, ...)
 {
 	int		nb_caractere_imprime;
 	va_list	args;
@@ -45,7 +121,7 @@ int	ft_printf(const char *input, ...)
 	s.index = 0;
 	va_start(args, input);
 	va_copy(copy, args);
-	nb_caractere_imprime = lecture_chaine(input, args, copy, &s);
+	nb_caractere_imprime = read_input(input, args, &s, copy);
 	va_end(args);
 	return (nb_caractere_imprime);
 }
