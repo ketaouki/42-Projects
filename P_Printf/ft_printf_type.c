@@ -27,13 +27,19 @@ int	ft_type(s_input *s, va_list args)
 	{
 		str = va_arg(args, void *);
 		ft_putstr("0x");
-		nb_caractere_imprime += 3;
+		nb_caractere_imprime += 2;
 		nb_caractere_imprime += ft_putadress_hexa(str, "0123456789abcdef");
 		s->type = '\0';
 	}
 	if (s->type == 'd')
 	{
 		integer = va_arg(args, int);
+		if (s->f_dot == 1 && integer < 0)
+		{
+			integer = integer * -1;
+			ft_putchar('0');
+			nb_caractere_imprime += 2;
+		}
 		nb_caractere_imprime += ft_putnbr(integer);
 		s->type = '\0';
 	}
@@ -60,6 +66,11 @@ int	ft_type(s_input *s, va_list args)
 		numunsigned = va_arg(args, int);
 		nb_caractere_imprime += ft_putnbr_base(numunsigned, "0123456789ABCDEF");
 		s->type = '\0';
+	}
+	if (s->type == '%')
+	{
+		ft_putchar('%');
+		nb_caractere_imprime++;
 	}
 	return (nb_caractere_imprime);
 }

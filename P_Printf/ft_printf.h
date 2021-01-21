@@ -46,6 +46,10 @@ int		ft_type(s_input *s, va_list args);
 
 //		COUNT_FONCTINS		//
 
+int		ft_putnbr_count(int n);
+int		ft_putstr_count(char *str);
+int		ft_putnbr_base_count(unsigned int nbr, char *base);
+int		ft_putadress_hexa_count(void *str, char *base);
 int		ft_type_count(s_input *s, va_list copy);
 
 

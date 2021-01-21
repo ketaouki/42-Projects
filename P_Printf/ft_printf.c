@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:08:18 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/21 08:32:42 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 10:17:11 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int		ft_print(s_input *s, va_list args, va_list copy)
 				}
 			}
 			test = ft_type_count(s, copy);
+			//printf(" == %d == ", test);
 			while((nb_caractere_imprime) + test < s->precision)
 			{
 				ft_putchar('0');
