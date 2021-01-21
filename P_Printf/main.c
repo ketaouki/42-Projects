@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:20:44 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/21 10:28:30 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 14:23:27 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,42 +18,42 @@ int	main(void)
 	// ft_printf("%2d", d);
 	// printf("\n");
 	// printf("%2d", d);
-	printf(" %d ", ft_printf(" %.d ", 0));
+	// printf(" %d ", ft_printf(" %.d ", 0));
+	// printf("\n");
+	// printf(" %d ", printf(" %.d ", 0));
+	// printf("\n");
+	printf(" %d ", ft_printf("%*.*d", 10, 21, -10));
 	printf("\n");
-	printf(" %d ", printf(" %.d ", 0));
+	printf(" %d ", printf("%*.*d", 10, 21, -10));
 	printf("\n");
-	printf(" %d ", ft_printf(" *%-*.*d* *%*.*d* ", 4, 5, 10, 10, 21, -10));
-	printf("\n");
-	printf(" %d ", printf(" *%-*.*d* *%*.*d* ", 4, 5, 10, 10, 21, -10));
-	printf("\n");
-	printf(" %d ", ft_printf(" *%-*.*d* *%*.*d* ", 6, 2, 102, 10, 21, -101));
-	printf("\n");
-	printf(" %d ", printf(" *%-*.*d* *%*.*d* ", 6, 2, 102, 10, 21, -101));
-	printf("\n");
-	printf(" %d ", ft_printf(" *%-*.*d* *%*.*d* ", 6, 2, 102, 10, 21, -101));
-	printf("\n");
-	printf(" %d ", printf(" *%-*.*d* *%*.*d* ", 6, 2, 102, 10, 21, -101));
-	printf("\n");
-	printf(" %d ", ft_printf(" 0*%0-*.*d*0 0*%0*.*d*0 ", 6, 2, 102, 10, 21, -101));
-	printf("\n");
-	printf(" %d ", printf(" 0*%0-*.*d*0 0*%0*.*d*0 ", 6, 2, 102, 10, 21, -101));
-	printf("\n");
-	printf(" %d ", ft_printf(" 0*%0-*.*d*0 0*%0*.*d*0 ", 2, 6, 102, 21, 10, -101));
-	printf("\n");
-	printf(" %d ", printf(" 0*%0-*.*d*0 0*%0*.*d*0 ", 2, 6, 102, 21, 10, -101));
-	printf("\n");
-	printf(" %d ", ft_printf(" 0*%0-*d*0 0*%0*d*0 ", 21, 1021, 21, -1011));
-	printf("\n");
-	printf(" %d ", printf(" 0*%0-*d*0 0*%0*d*0 ", 21, 1021, 21, -1011));
-	printf("\n");
-	printf(" %d ", ft_printf(" 0*%-0*.10d*0 0*%-0*.0d*0 ", 21, 1021, 21, -1011));
-	printf("\n");
-	printf(" %d ", printf(" 0*%-0*.10d*0 0*%-0*.0d*0 ", 21, 1021, 21, -1011));
-	printf("\n");
-	printf(" %d ", ft_printf(" --0*%0*.0d*0 0*%0*.10d*0-- ", -2, 0, 21, 1));
-	printf("\n");
-	printf(" %d ", printf(" --0*%0*.0d*0 0*%0*.10d*0-- ", -2, 0, 21, 1));
-	printf("\n");
+	// printf(" %d ", ft_printf(" *%-*.*d* *%*.*d* ", 6, 2, 102, 10, 21, -101));
+	// printf("\n");
+	// printf(" %d ", printf(" *%-*.*d* *%*.*d* ", 6, 2, 102, 10, 21, -101));
+	// printf("\n");
+	// printf(" %d ", ft_printf(" *%-*.*d* *%*.*d* ", 6, 2, 102, 10, 21, -101));
+	// printf("\n");
+	// printf(" %d ", printf(" *%-*.*d* *%*.*d* ", 6, 2, 102, 10, 21, -101));
+	// printf("\n");
+	// printf(" %d ", ft_printf(" 0*%0-*.*d*0 0*%0*.*d*0 ", 6, 2, 102, 10, 21, -101));
+	// printf("\n");
+	// printf(" %d ", printf(" 0*%0-*.*d*0 0*%0*.*d*0 ", 6, 2, 102, 10, 21, -101));
+	// printf("\n");
+	// printf(" %d ", ft_printf(" 0*%0-*.*d*0 0*%0*.*d*0 ", 2, 6, 102, 21, 10, -101));
+	// printf("\n");
+	// printf(" %d ", printf(" 0*%0-*.*d*0 0*%0*.*d*0 ", 2, 6, 102, 21, 10, -101));
+	// printf("\n");
+	// printf(" %d ", ft_printf(" 0*%0-*d*0 0*%0*d*0 ", 21, 1021, 21, -1011));
+	// printf("\n");
+	// printf(" %d ", printf(" 0*%0-*d*0 0*%0*d*0 ", 21, 1021, 21, -1011));
+	// printf("\n");
+	// printf(" %d ", ft_printf(" 0*%-0*.10d*0 0*%-0*.0d*0 ", 21, 1021, 21, -1011));
+	// printf("\n");
+	// printf(" %d ", printf(" 0*%-0*.10d*0 0*%-0*.0d*0 ", 21, 1021, 21, -1011));
+	// printf("\n");
+	// printf(" %d ", ft_printf(" --0*%0*.0d*0 0*%0*.10d*0-- ", -2, 0, 21, 1));
+	// printf("\n");
+	// printf(" %d ", printf(" --0*%0*.0d*0 0*%0*.10d*0-- ", -2, 0, 21, 1));
+	// printf("\n");
 }
 
 

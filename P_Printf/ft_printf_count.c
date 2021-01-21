@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:12:44 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/21 10:20:37 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 14:17:20 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,9 @@ int		ft_type_count(s_input *s, va_list copy)
 	{
 		integer = va_arg(copy, int);
 		if (s->f_dot == 1 && integer < 0)
+		{
 			ft_putchar('-');
+		}
 		if (s->f_star == 1)
 			nb_caractere_imprime++;
 		nb_caractere_imprime += ft_putnbr_count(integer);

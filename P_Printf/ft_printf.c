@@ -6,21 +6,21 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:08:18 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/21 10:17:11 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 14:16:46 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_add_in_structure(s_input *s, const char *input, va_list args)
+void	ft_add_in_structure(s_input *s, const char *input, va_list args, va_list copy)
 {
 	if (input[s->index] == '-' || input[s->index] == '0')
 		ft_less_or_zero(s, input);
 	ft_width(s, input);
 	if (input[s->index] == '*')
-		ft_star(s, input, args);
+		ft_star(s, input, args, copy);
 	if (input[s->index] == '.')
-		ft_dot(s, input, args);
+		ft_dot(s, input, args, copy);
 	if (input[s->index] == 'c' || input[s->index] == 's' ||
 			input[s->index] == 'p' || input[s->index] == 'd' ||
 			input[s->index] == 'i' || input[s->index] == 'u' ||
@@ -116,7 +116,7 @@ int		read_input(const char *input, va_list args, s_input *s, va_list copy)
 		{
 			(s->index)++;
 			ft_initialise_structure(s);
-			ft_add_in_structure(s, input, args);
+			ft_add_in_structure(s, input, args, copy);
 			nb_caractere_imprime += ft_print(s, args, copy);
 		}
 		else

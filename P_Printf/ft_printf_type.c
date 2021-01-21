@@ -38,7 +38,7 @@ int	ft_type(s_input *s, va_list args)
 		{
 			integer = integer * -1;
 			ft_putchar('0');
-			nb_caractere_imprime += 2;
+			nb_caractere_imprime += 2; // Pour le moins que je rqjoute dans la fonction count
 		}
 		nb_caractere_imprime += ft_putnbr(integer);
 		s->type = '\0';

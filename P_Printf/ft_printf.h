@@ -29,10 +29,10 @@ int		ft_strlen(char *str);
 void	ft_initialise_structure(s_input	*s);
 void	ft_width(s_input *s, const char *input);
 void	ft_precision(s_input *s, const char *input);
-void	ft_star(s_input *s, const char *input, va_list args);
+void	ft_star(s_input *s, const char *input, va_list args, va_list copy);
 void	ft_less_or_zero(s_input *s, const char *input);
-void	ft_dot(s_input *s, const char *input, va_list args);
-void	ft_add_in_structure(s_input *s, const char *input, va_list args);
+void	ft_dot(s_input *s, const char *input, va_list args, va_list copy);
+void	ft_add_in_structure(s_input *s, const char *input, va_list args, va_list copy);
 
 
 //		PUT_FONCTIONS		//

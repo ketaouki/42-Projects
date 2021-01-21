@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:08:52 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/21 09:01:01 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 14:23:12 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,17 @@ void	ft_precision(s_input *s, const char *input)
 		(s->index)++;
 }
 
-void	ft_star(s_input *s, const char *input, va_list args)
+void	ft_star(s_input *s, const char *input, va_list args, va_list copy)
 {
+	int cpy;
 	s->f_star = 1;
 	(s->index)++;
 	s->width = 1;
 	if (input[s->index] >= '0' || input[s->index] <= '9')
+	{
 		s->width = va_arg(args, int);
+		cpy = va_arg(copy, int);
+	}
 	while (input[s->index] >= '0' && input[s->index] <= '9')
 		(s->index)++;
 }
@@ -61,10 +65,12 @@ void	ft_less_or_zero(s_input *s, const char *input)
 	s->width = 1;
 }
 
-void	ft_dot(s_input *s, const char *input, va_list args)
+void	ft_dot(s_input *s, const char *input, va_list args, va_list copy)
 {
+	int cpy;
 	s->f_dot = 1;
 	(s->index)++;
+	//s->precision = 1;
 	if (input[s->index] >= '0' || input[s->index] <= '9')
 		ft_precision(s, input);
 	if (input[s->index] == '*')
@@ -72,7 +78,10 @@ void	ft_dot(s_input *s, const char *input, va_list args)
 		s->f_star = 1;
 		(s->index)++;
 		if (input[s->index] >= '0' || input[s->index] <= '9')
-			s->precision = va_arg(args, int);
+			{
+				s->precision = va_arg(args, int);
+				cpy = va_arg(copy, int);
+			}
 		while (input[s->index] >= '0' && input[s->index] <= '9')
 			(s->index)++;
 	}
