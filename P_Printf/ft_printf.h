@@ -18,6 +18,12 @@ typedef struct s_input
 	char	type;
 }	s_input;
 
+
+//		UTILS_FONCTIONS		//
+
+int		ft_atoi(const char *str);
+int		ft_strlen(char *str);
+
 //		STRUCTURE_FONCTIONS		//
 
 void	ft_initialise_structure(s_input	*s);
@@ -36,20 +42,16 @@ int		ft_putnbr(int n);
 int		ft_putstr(char *str);
 int		ft_putnbr_base(unsigned int nbr, char *base);
 int		ft_putadress_hexa(void *str, char *base);
-int		ft_type(s_input *s, const char *input, va_list args);
+int		ft_type(s_input *s, va_list args);
 
 //		COUNT_FONCTINS		//
 
-int		ft_type_count(s_input *s, const char *input, va_list copy);
+int		ft_type_count(s_input *s, va_list copy);
 
-//		UTILS_FONCTIONS		//
-
-int		ft_atoi(const char *str);
-int		ft_strlen(char *str);
 
 //					//
 
-int		ft_print(s_input *s, const char *input, va_list args, va_list copy);
+int		ft_print(s_input *s, va_list args, va_list copy);
 int		read_input(const char *input, va_list args, s_input *s, va_list copy);
 int		ft_printf(const char *input, ...);
 

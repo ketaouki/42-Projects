@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int	ft_type(s_input *s, const char *input, va_list args)
+int	ft_type(s_input *s, va_list args)
 {
 	char			*str;
 	int				integer;

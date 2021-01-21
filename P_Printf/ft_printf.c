@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:08:18 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/20 14:43:39 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 08:32:42 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_add_in_structure(s_input *s, const char *input, va_list args)
 	}
 }
 
-int		ft_print(s_input *s, const char *input, va_list args, va_list copy)
+int		ft_print(s_input *s, va_list args, va_list copy)
 {
 	int	nb_caractere_imprime;
 	int test;
@@ -46,44 +46,61 @@ int		ft_print(s_input *s, const char *input, va_list args, va_list copy)
 		{
 			if (s->precision < 0)
 			{
-				nb_caractere_imprime += ft_type(s, input, args);
-				while (nb_caractere_imprime++ < (s->precision * (-1)))
-					ft_putchar (' ');
+				nb_caractere_imprime += ft_type(s, args);
+				while (nb_caractere_imprime < (s->precision * (-1)))
+				{
+					ft_putchar(' ');
+					nb_caractere_imprime++;
+				}
 			}
-			test = ft_type_count(s, input, copy);
-			while((nb_caractere_imprime++) + test < s->precision)
+			test = ft_type_count(s, copy);
+			while((nb_caractere_imprime) + test < s->precision)
+			{
 				ft_putchar('0');
+				nb_caractere_imprime++;
+			}
 		}
-		nb_caractere_imprime += ft_type(s, input, args);
-		while ((nb_caractere_imprime++) < s->width)
-			ft_putchar (' ');
+		nb_caractere_imprime += ft_type(s, args);
+		while ((nb_caractere_imprime) < s->width)
+		{
+			ft_putchar(' ');
+			nb_caractere_imprime++;
+		}
 	}
 	if (s->f_dot == 1)
 	{
-		test = ft_type_count(s, input, copy);
-		while((nb_caractere_imprime++) + test < s->precision)
+		test = ft_type_count(s, copy);
+		while((nb_caractere_imprime) + test < s->precision)
+		{
 			ft_putchar('0');
-		nb_caractere_imprime += ft_type(s, input, args);
+			nb_caractere_imprime++;
+		}
+		nb_caractere_imprime += ft_type(s, args);
 	}
 	if (s->f_zero == 1)
 	{
-		test = ft_type_count(s, input, copy);
-		while((nb_caractere_imprime++) + test < s->width)
+		test = ft_type_count(s, copy);
+		while((nb_caractere_imprime) + test < s->width)
+		{
 			ft_putchar('0');
-		nb_caractere_imprime += ft_type(s, input, args);
+			nb_caractere_imprime++;
+		}
+		nb_caractere_imprime += ft_type(s, args);
 	}
 	if (s->width > 0)
 	{
-		test = ft_type_count(s, input, copy);
-		while((nb_caractere_imprime++) + test < s->width)
+		test = ft_type_count(s, copy);
+		while((nb_caractere_imprime) + test < s->width)
+		{
 			ft_putchar(' ');
-		nb_caractere_imprime += ft_type(s, input, args);
+			nb_caractere_imprime++;
+		}
+		nb_caractere_imprime += ft_type(s, args);
 	}
 	if (s->type == 'c' || s->type == 's' || s->type == 'p' ||
 		s->type == 'd' || s->type == 'i' || s->type == 'u' ||
 		s->type == 'x' || s->type == 'X' || s->type == '%')
-		nb_caractere_imprime += ft_type(s, input, args);
-	nb_caractere_imprime -= 1;
+		nb_caractere_imprime += ft_type(s, args);
 	return (nb_caractere_imprime);
 }
 
@@ -99,7 +116,7 @@ int		read_input(const char *input, va_list args, s_input *s, va_list copy)
 			(s->index)++;
 			ft_initialise_structure(s);
 			ft_add_in_structure(s, input, args);
-			nb_caractere_imprime += ft_print(s, input, args, copy);
+			nb_caractere_imprime += ft_print(s, args, copy);
 		}
 		else
 		{

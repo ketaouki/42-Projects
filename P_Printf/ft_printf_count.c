@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:12:44 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/20 12:53:35 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 08:11:28 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int		ft_putadress_hexa_count(void *str, char *base)
 	return (nb_caractere_imprime);
 }
 
-int		ft_type_count(s_input *s, const char *input, va_list copy)
+int		ft_type_count(s_input *s, va_list copy)
 {
 	char			*str;
 	int				integer;
