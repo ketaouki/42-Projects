@@ -1,119 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_count.c                                  :+:      :+:    :+:   */
+/*   ft_printf_type_count.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/14 11:12:44 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/22 08:49:36 by ketaouki         ###   ########lyon.fr   */
+/*   Created: 2021/01/22 08:50:20 by ketaouki          #+#    #+#             */
+/*   Updated: 2021/01/22 08:55:19 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_putnbr_count(int n)
+int	ft_char_type_count(va_list copy)
 {
+	int	c;
 	int	nb_caractere_imprime;
 
 	nb_caractere_imprime = 0;
-	if (n < 0)
-	{
-		n = n * -1;
-		nb_caractere_imprime++;
-	}
-	if (n > 9)
-	{
-		ft_putnbr_count(n / 10);
-		nb_caractere_imprime++;
-	}
+	c = va_arg(copy, int);
 	nb_caractere_imprime++;
 	return (nb_caractere_imprime);
 }
 
-int		ft_putstr_count(char *str)
+int	ft_str_p_type_count(s_input *s, va_list copy)
 {
-	int	i;
-	int	nb_caractere_imprime;
-
-	i = 0;
-	nb_caractere_imprime = 0;
-	if (str)
-	{
-		while (str[i])
-		{
-			i++;
-			nb_caractere_imprime++;
-		}
-	}
-	return (nb_caractere_imprime);
-}
-
-int		ft_putnbr_base_count(unsigned int nbr, char *base)
-{
-	int				i;
-	unsigned int	k;
-	unsigned int	nb;
-	int				nb_caractere_imprime;
-
-	i = 0;
-	nb = nbr;
-	k = ft_strlen(base);
-	nb_caractere_imprime = 0;
-	if (nb < 0)
-	{
-		nb = nb * -1;
-		nb_caractere_imprime++;
-	}
-	if (nb >= k)
-	{
-		ft_putnbr_base_count((nb / k), base);
-		nb_caractere_imprime++;
-	}
-	nb_caractere_imprime++;
-	return (nb_caractere_imprime);
-}
-
-int		ft_putadress_hexa_count(void *str, char *base)
-{
-	char			dest[9];
-	int				i;
-	unsigned long	nb;
-	int				nb_caractere_imprime;
-
-	nb = (unsigned long)str;
-	i = 8;
-	nb_caractere_imprime = 0;
-	while ((nb / ft_strlen(base) > 0))
-	{
-		dest[i] = base[((nb % ft_strlen(base)))];
-		nb = nb / ft_strlen(base);
-		i--;
-	}
-	dest[i] = base[((nb % 10))];
-	while (i < 9)
-	{
-		i++;
-		nb_caractere_imprime++;
-	}
-	return (nb_caractere_imprime);
-}
-
-int		ft_type_count(s_input *s, va_list copy)
-{
-	char			*str;
-	int				integer;
-	unsigned int	numunsigned;
-	int				nb_caractere_imprime;
+	char	*str;
+	int		nb_caractere_imprime;
 
 	nb_caractere_imprime = 0;
-	integer = 0;
-	numunsigned = 0;
-	if (s->type == 'c')
-	{
-		integer = va_arg(copy, int);
-		nb_caractere_imprime++;
-	}
 	if (s->type == 's')
 	{
 		str = va_arg(copy, char *);
@@ -125,13 +40,21 @@ int		ft_type_count(s_input *s, va_list copy)
 		nb_caractere_imprime += 2;
 		nb_caractere_imprime += ft_putadress_hexa_count(str, "0123456789abcdef");
 	}
+	return (nb_caractere_imprime);
+}
+
+int	ft_d_i_type_count(s_input *s, va_list copy)
+{
+	int	nb_caractere_imprime;
+	int	integer;
+
+	integer = 0;
+	nb_caractere_imprime = 0;
 	if (s->type == 'd')
 	{
 		integer = va_arg(copy, int);
 		if (s->f_dot == 1 && integer < 0)
-		{
 			ft_putchar('-');
-		}
 		if (s->f_star == 1)
 			nb_caractere_imprime++;
 		nb_caractere_imprime += ft_putnbr_count(integer);
@@ -141,6 +64,16 @@ int		ft_type_count(s_input *s, va_list copy)
 		integer = va_arg(copy, int);
 		nb_caractere_imprime += ft_putnbr_count(integer);
 	}
+	return (nb_caractere_imprime);
+}
+
+int	ft_u_x_type_count(s_input *s, va_list copy)
+{
+	int				nb_caractere_imprime;
+	unsigned int	numunsigned;
+
+	numunsigned = 0;
+	nb_caractere_imprime = 0;
 	if (s->type == 'u')
 	{
 		numunsigned = va_arg(copy, int);
@@ -156,9 +89,23 @@ int		ft_type_count(s_input *s, va_list copy)
 		numunsigned = va_arg(copy, int);
 		nb_caractere_imprime += ft_putnbr_base_count(numunsigned, "0123456789ABCDEF");
 	}
+	return (nb_caractere_imprime);
+}
+
+int	ft_type_count(s_input *s, va_list copy)
+{
+	int	nb_caractere_imprime;
+
+	nb_caractere_imprime = 0;
+	if (s->type == 'c')
+		nb_caractere_imprime += ft_char_type_count(copy);
+	if (s->type == 's' || s->type == 'p')
+		nb_caractere_imprime += ft_str_p_type_count(s, copy);
+	if (s->type == 'd' || s->type == 'i')
+		nb_caractere_imprime += ft_d_i_type_count(s, copy);
+	if (s->type == 'u' || s->type == 'x' || s->type == 'X')
+		nb_caractere_imprime += ft_u_x_type_count(s, copy);
 	if (s->type == '%')
-	{
 		nb_caractere_imprime++;
-	}
 	return (nb_caractere_imprime);
 }

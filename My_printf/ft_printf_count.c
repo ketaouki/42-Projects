@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:12:44 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/22 08:49:36 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/22 08:52:44 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,70 +94,6 @@ int		ft_putadress_hexa_count(void *str, char *base)
 	while (i < 9)
 	{
 		i++;
-		nb_caractere_imprime++;
-	}
-	return (nb_caractere_imprime);
-}
-
-int		ft_type_count(s_input *s, va_list copy)
-{
-	char			*str;
-	int				integer;
-	unsigned int	numunsigned;
-	int				nb_caractere_imprime;
-
-	nb_caractere_imprime = 0;
-	integer = 0;
-	numunsigned = 0;
-	if (s->type == 'c')
-	{
-		integer = va_arg(copy, int);
-		nb_caractere_imprime++;
-	}
-	if (s->type == 's')
-	{
-		str = va_arg(copy, char *);
-		nb_caractere_imprime += ft_putstr_count(str);
-	}
-	if (s->type == 'p')
-	{
-		str = va_arg(copy, void *);
-		nb_caractere_imprime += 2;
-		nb_caractere_imprime += ft_putadress_hexa_count(str, "0123456789abcdef");
-	}
-	if (s->type == 'd')
-	{
-		integer = va_arg(copy, int);
-		if (s->f_dot == 1 && integer < 0)
-		{
-			ft_putchar('-');
-		}
-		if (s->f_star == 1)
-			nb_caractere_imprime++;
-		nb_caractere_imprime += ft_putnbr_count(integer);
-	}
-	if (s->type == 'i')
-	{
-		integer = va_arg(copy, int);
-		nb_caractere_imprime += ft_putnbr_count(integer);
-	}
-	if (s->type == 'u')
-	{
-		numunsigned = va_arg(copy, int);
-		nb_caractere_imprime += ft_putnbr_base_count(numunsigned, "0123456789");
-	}
-	if (s->type == 'x')
-	{
-		numunsigned = va_arg(copy, int);
-		nb_caractere_imprime += ft_putnbr_base_count(numunsigned, "0123456789abcdef");
-	}
-	if (s->type == 'X')
-	{
-		numunsigned = va_arg(copy, int);
-		nb_caractere_imprime += ft_putnbr_base_count(numunsigned, "0123456789ABCDEF");
-	}
-	if (s->type == '%')
-	{
 		nb_caractere_imprime++;
 	}
 	return (nb_caractere_imprime);
