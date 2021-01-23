@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 10:15:21 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/23 10:01:06 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/23 12:32:41 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	main(void)
 {
-	printf(" %d ", ft_printf(" %-*.*d  ", 6, 6, 102));
+	printf(" %d ", ft_printf(" 0*%0-*d*0 0*%0*d*0 ", 21, 1021, 21, -1011));
 	printf("\n");
-	printf(" %d ", printf(" %-*.*d  ", 6, 6, 102));
+	printf(" %d ", printf(" 0*%0-*d*0 0*%0*d*0 ", 21, 1021, 21, -1011));
 	printf("\n");
 	return (0);
 }

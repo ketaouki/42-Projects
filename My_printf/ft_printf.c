@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 08:52:57 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/23 09:49:19 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/23 12:31:51 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,20 @@ int	ft_dot_only(s_input *s, va_list args, va_list copy)
 	int	count;
 
 	nb_caractere_imprime = 0;
+	if (s->width > s->precision)
+	{
+		while(nb_caractere_imprime < s->precision)
+		{
+			ft_putchar(' ');
+			nb_caractere_imprime++;
+		}
+		count = ft_type_count(s, copy);
+		while ((nb_caractere_imprime) + count  < s->width)
+		{
+			ft_putchar('0');
+			nb_caractere_imprime++;
+		}
+	}
 	count = ft_type_count(s, copy);
 	while ((nb_caractere_imprime) + count < s->precision)
 	{
@@ -38,6 +52,15 @@ int	ft_dot_only(s_input *s, va_list args, va_list copy)
 		nb_caractere_imprime++;
 	}
 	nb_caractere_imprime += ft_type(s, args);
+	if (s->precision < 0)
+	{
+		s->precision *= -1;
+		while (nb_caractere_imprime < s->precision)
+		{
+			ft_putchar(' ');
+			nb_caractere_imprime++;
+		}
+	}
 	return (nb_caractere_imprime);
 }
 

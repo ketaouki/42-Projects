@@ -58,7 +58,7 @@ int		ft_putadress_hexa_count(void *str, char *base);
 int		ft_type_count(s_input *s, va_list copy);
 int		ft_char_type_count(va_list copy);
 int		ft_str_p_type_count(s_input *s, va_list copy);
-int		ft_d_i_type_count(s_input *s, va_list copy);
+int		ft_d_i_type_count(va_list copy);
 int		ft_u_x_type_count(s_input *s, va_list copy);
 
 //					//

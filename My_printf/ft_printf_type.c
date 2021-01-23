@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 08:36:40 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/23 10:04:06 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/23 12:31:58 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,15 @@ int	ft_d_i_type(s_input *s, va_list args)
 	integer = 0;
 	nb_caractere_imprime = 0;
 	integer = va_arg(args, int);
-	if ((s->f_dot == 1 || s->f_zero == 1) && integer < 0)
+	if (integer < 0)
 	{
 		integer = integer * -1;
-		// if (s->f_dot == 1 && s->f_less == 0)
-		// 	nb_caractere_imprime++;
-		if (s->f_dot == 1 && s->width > 0)
+		if (!(s->width > s->precision))
 		{
 			ft_putchar('0');
-			nb_caractere_imprime += 2; // Pour le moins que je rqjoute dans la fonction count
-		}
-		if (s->f_zero == 1 && s->f_dot == 0)
 			nb_caractere_imprime++;
+		}
+		nb_caractere_imprime++;
 	}
 	nb_caractere_imprime += ft_putnbr(integer);
 	s->type = '\0';

@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 08:50:20 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/23 10:02:38 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/23 11:08:43 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,16 @@ int	ft_str_p_type_count(s_input *s, va_list copy)
 	return (nb_caractere_imprime);
 }
 
-int	ft_d_i_type_count(s_input *s, va_list copy)
+int	ft_d_i_type_count(va_list copy)
 {
 	int	nb_caractere_imprime;
 	int	integer;
 
-	integer = 0;
 	nb_caractere_imprime = 0;
-	if (s->type == 'd')
-	{
-		integer = va_arg(copy, int);
-		if ((s->f_dot == 1 || s->f_zero == 1) && integer < 0)
-			ft_putchar('-');
-		//if (s->f_star == 1)
-		//	nb_caractere_imprime++;
-		nb_caractere_imprime += ft_putnbr_count(integer);
-	}
-	if (s->type == 'i')
-	{
-		integer = va_arg(copy, int);
-		if ((s->f_dot == 1 || s->f_zero == 1) && integer < 0)
-			ft_putchar('-');
-		nb_caractere_imprime += ft_putnbr_count(integer);
-	}
+	integer = va_arg(copy, int);
+	if (integer < 0)
+		ft_putchar('-');
+	nb_caractere_imprime += ft_putnbr_count(integer);
 	return (nb_caractere_imprime);
 }
 
@@ -104,7 +91,7 @@ int	ft_type_count(s_input *s, va_list copy)
 	if (s->type == 's' || s->type == 'p')
 		nb_caractere_imprime += ft_str_p_type_count(s, copy);
 	if (s->type == 'd' || s->type == 'i')
-		nb_caractere_imprime += ft_d_i_type_count(s, copy);
+		nb_caractere_imprime += ft_d_i_type_count(copy);
 	if (s->type == 'u' || s->type == 'x' || s->type == 'X')
 		nb_caractere_imprime += ft_u_x_type_count(s, copy);
 	if (s->type == '%')
