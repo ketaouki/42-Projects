@@ -4,6 +4,7 @@ SRC = 	ft_printf.c \
 		ft_printf_put.c \
 		ft_printf_utils.c \
 		ft_printf_count.c \
+		ft_printf_type_count.c \
 		ft_printf_type.c \
 		ft_printf_structure.c
 CC=gcc

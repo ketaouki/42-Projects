@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:09:22 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/21 08:35:39 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/22 08:52:55 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,6 @@ int		ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-void	ft_initialise_structure(s_input *s)
-{
-	s->f_less = 0;
-	s->f_zero = 0;
-	s->f_dot = 0;
-	s->f_star = 0;
-	s->width = 0;
-	s->precision = 0;
-	s->type = '\0';
 }
 
 int		ft_atoi(const char *str)
