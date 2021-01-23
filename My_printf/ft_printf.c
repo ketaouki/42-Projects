@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 08:52:57 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/22 10:14:22 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/23 09:26:06 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,6 @@ int	ft_less_only(s_input *s, va_list args)
 	int nb_caractere_imprime;
 
 	nb_caractere_imprime = ft_type(s, args);
-	while ((nb_caractere_imprime) < s->width)
-	{
-		ft_putchar(' ');
-		nb_caractere_imprime++;
-	}
-	return (nb_caractere_imprime);
-}
-
-int	ft_less_dot(s_input *s, va_list args, va_list copy)
-{
-	int	nb_caractere_imprime;
-	int	count;
-
-	nb_caractere_imprime = 0;
-	count = ft_type_count(s, copy);
-	while ((nb_caractere_imprime) + count < s->precision)
-	{
-		ft_putchar('0');
-		nb_caractere_imprime++;
-	}
-	nb_caractere_imprime += ft_type(s, args);
 	while ((nb_caractere_imprime) < s->width)
 	{
 		ft_putchar(' ');
@@ -75,6 +54,27 @@ int	ft_zero_only(s_input *s, va_list args, va_list copy)
 		nb_caractere_imprime++;
 	}
 	nb_caractere_imprime += ft_type(s, args);
+	return (nb_caractere_imprime);
+}
+
+int	ft_less_dot(s_input *s, va_list args, va_list copy)
+{
+	int	nb_caractere_imprime;
+	int	count;
+
+	nb_caractere_imprime = 0;
+	count = ft_type_count(s, copy);
+	while ((nb_caractere_imprime) + count < s->precision)
+	{
+		ft_putchar('0');
+		nb_caractere_imprime++;
+	}
+	nb_caractere_imprime += ft_type(s, args);
+	while ((nb_caractere_imprime) < s->width)
+	{
+		ft_putchar(' ');
+		nb_caractere_imprime++;
+	}
 	return (nb_caractere_imprime);
 }
 
