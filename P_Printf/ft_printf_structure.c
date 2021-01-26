@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:08:52 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/26 09:05:39 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 14:01:27 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_width(s_input *s, const char *input)
 	s->width = ft_atoi(&input[s->index]);
 	while (input[s->index] >= '0' && input[s->index] <= '9')
 		(s->index)++;
+	if (s->width > 0)
+		s->width_up = 1;
 }
 
 void	ft_precision(s_input *s, const char *input)
@@ -33,7 +35,6 @@ void	ft_star(s_input *s, const char *input, va_list args, va_list copy)
 
 	s->f_star = 1;
 	(s->index)++;
-	s->width = 1;
 	if (input[s->index] >= '0' || input[s->index] <= '9')
 	{
 		s->width = va_arg(args, int);
@@ -122,8 +123,9 @@ void	ft_initialise_structure(s_input *s)
 	s->f_dot = 0;
 	s->f_star = 0;
 	s->width = 0;
-	s->precision = -1;
+	s->precision = 0;
 	s->nbr_char_a_imprime = 0;
 	s->negatif = 0;
+	s->width = 0;
 	s->type = '\0';
 }

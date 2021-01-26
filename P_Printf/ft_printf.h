@@ -15,8 +15,10 @@ typedef struct s_input
 	int		width;
 	int		precision;
 	int		index;
+
 	int		nbr_char_a_imprime;
 	int		negatif;
+	int		width_up;
 	char	type;
 }	s_input;
 
