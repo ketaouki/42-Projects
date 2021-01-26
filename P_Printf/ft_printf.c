@@ -90,16 +90,16 @@ int	ft_less_dot(s_input *s, va_list args)
 int ft_test(s_input *s, va_list args)
 {
 	int nb_caractere_imprime;
-	int bis;
+	int tempo;
 
-	bis = 0;
+	tempo = 0;
 	nb_caractere_imprime = 0;
 	if (s->precision == 0)
 		s->precision = +1;
-	while(bis + s->negatif < (s->width - s->precision))
+	while(tempo + s->negatif < (s->width - s->precision))
 	{
 		ft_putchar(' ');
-		bis++;
+		tempo++;
 	}
 	if(s->negatif == 1)
 		ft_putchar('-');
@@ -111,7 +111,7 @@ int ft_test(s_input *s, va_list args)
 	if(s->negatif == 1)
 		nb_caractere_imprime++;
 	nb_caractere_imprime += ft_type(s, args);
-	nb_caractere_imprime += bis;
+	nb_caractere_imprime += tempo;
 	return(nb_caractere_imprime);
 }
 

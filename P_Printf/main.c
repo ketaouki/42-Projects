@@ -19,19 +19,20 @@ int	main(void)
 	//printf(" %d ", printf("%4.2d",  101));
 	//printf("\n");
 
-	printf("\n TEST 16\n");
-	printf(" %d ", printf(" --0*%0*.0d*0 0*%0*.10d*0-- ", -2, 0, 21, 1));
-	printf("\n");
-	printf(" %d ", ft_printf(" --0*%0*.0d*0 0*%0*.10d*0-- ", -2, 0, 21, 1));
-	printf("\n TEST 17\n");
-	printf(" %d ", printf("%0*.10d", 21, INT_MIN));
-	printf("\n");
-	printf(" %d ", ft_printf("%0*.10d", 21, INT_MIN));
-	printf("\n TEST 57\n");
-	printf(" %d ", printf("%09.0d", UINT_MAX + 1));
-	printf("\n");
-	printf(" %d ", ft_printf("%09.0d", UINT_MAX + 1));
+	//printf("\n TEST 2\n");
+	//printf(" %d ", printf(" %.d ", 0));
+	//printf("\n");
+	//printf(" %d ", ft_printf(" %.d ", 0));
 
+	//printf("\n TEST 57\n");
+	//printf(" %d ", printf("%09.0d", UINT_MAX + 1));
+	//printf("\n");
+	//printf(" %d ", ft_printf("%09.0d", UINT_MAX + 1));
+
+	printf("\n TEST 72\n");
+	printf(" %d ", printf(" %10.d", 0));
+	printf("\n");
+	printf(" %d ", ft_printf(" %10.d", 0));
 
 
 

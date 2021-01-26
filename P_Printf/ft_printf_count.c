@@ -12,13 +12,18 @@
 
 #include "ft_printf.h"
 
-int		ft_putnbr_count(int n)
+int		ft_putnbr_count(s_input *s, int n)
 {
 	long	nb;
 	int		nb_caractere_imprime;
 
 	nb = (long)n;
 	nb_caractere_imprime = 0;
+	if (nb == 0 && s->precision == 0 && s->f_dot == 1)
+	{
+		nb_caractere_imprime++;
+		return (nb_caractere_imprime);
+	}
 	if (nb < 0)
 	{
 		nb = nb * -1;
@@ -26,7 +31,7 @@ int		ft_putnbr_count(int n)
 		nb_caractere_imprime++;
 	}
 	if (nb > 9)
-		ft_putnbr_count(nb / 10);
+		ft_putnbr_count(s, nb / 10);
 	while (n > 9)
 	{
 		n = n / 10;

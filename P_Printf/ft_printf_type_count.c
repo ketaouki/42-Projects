@@ -30,7 +30,9 @@ void	ft_d_i_type_count(s_input *s, va_list copy)
 		s->negatif = 1;
 		s->nbr_char_a_imprime -= 1;
 	}
-	s->nbr_char_a_imprime += ft_putnbr_count(integer);
+	s->nbr_char_a_imprime += ft_putnbr_count(s, integer);
+	if (integer <= -2147483648)
+		s->nbr_char_a_imprime = 10;
 }
 
 void	ft_type_count(s_input *s, va_list copy)

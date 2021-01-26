@@ -38,7 +38,9 @@ int	ft_d_i_type(s_input *s, va_list args)
 		integer *= -1;
 		s->negatif = 0;
 	}
-	nb_caractere_imprime += ft_putnbr(integer);
+	nb_caractere_imprime += ft_putnbr(s, integer);
+	if (integer <= -2147483648)
+		nb_caractere_imprime = 10;
 	s->type = '\0';
 	return (nb_caractere_imprime);
 }
