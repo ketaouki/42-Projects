@@ -1,22 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf_put.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/22 10:15:21 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/26 08:28:20 by ketaouki         ###   ########lyon.fr   */
+/*   Created: 2021/01/14 11:08:21 by ketaouki          #+#    #+#             */
+/*   Updated: 2021/01/26 10:59:29 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
+void	ft_putchar(char c)
 {
-	printf(" %d ", ft_printf("%0*.10d", 21, 1));
-	printf("\n");
-	printf(" %d ", printf("%0*.10d", 21, 1));
-	printf("\n");
-	return (0);
+	unsigned char	d;
+
+	d = (unsigned char)c;
+	write(1, &c, 1);
+}
+
+int		ft_putnbr(int n)
+{
+	long	nb;
+	int		nb_caractere_imprime;
+
+	nb = (long)n;
+	nb_caractere_imprime = 0;
+	if (nb < 0)
+		nb = nb * -1;
+	if (nb > 9)
+		ft_putnbr(nb / 10);
+	ft_putchar((nb % 10) + '0');
+	while (n > 9)
+	{
+		n = n / 10;
+		nb_caractere_imprime++;
+	}
+	nb_caractere_imprime++;
+	return (nb_caractere_imprime);
 }

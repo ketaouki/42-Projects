@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:08:52 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/23 09:44:33 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/26 09:05:39 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	ft_add_in_structure(s_input *s, const char *input, va_list args, va_list co
 			input[s->index] == '%')
 	{
 		s->type = input[s->index];
+		ft_type_count(s, copy);
 		(s->index)++;
 	}
 }
@@ -122,5 +123,7 @@ void	ft_initialise_structure(s_input *s)
 	s->f_star = 0;
 	s->width = 0;
 	s->precision = -1;
+	s->nbr_char_a_imprime = 0;
+	s->negatif = 0;
 	s->type = '\0';
 }
