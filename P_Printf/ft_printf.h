@@ -5,6 +5,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdio.h>
+# include <limits.h>
 
 typedef struct s_input
 {
@@ -18,7 +19,7 @@ typedef struct s_input
 
 	int		nbr_char_a_imprime;
 	int		negatif;
-	int		width_up;
+	int		width_supp;
 	char	type;
 }	s_input;
 

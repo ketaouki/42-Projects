@@ -37,14 +37,6 @@ int	ft_dot_only(s_input *s, va_list args)
 	int nb_caractere_imprime;
 
 	nb_caractere_imprime = 0;
-	// if(s->width > s->precision)
-	// {
-	// 	while(nb_caractere_imprime + (s->nbr_char_a_imprime + s->negatif) < s->width)
-	// 	{
-	// 		ft_putchar(' ');
-	// 		nb_caractere_imprime++;
-	// 	}
-	// }
 	if(s->negatif == 1)
 		ft_putchar('-');
 	while((nb_caractere_imprime + s->nbr_char_a_imprime) < s->precision)
@@ -63,11 +55,15 @@ int	ft_zero_only(s_input *s, va_list args)
 	int nb_caractere_imprime;
 
 	nb_caractere_imprime = 0;
-	while((nb_caractere_imprime) + s->nbr_char_a_imprime < s->width)
+	if(s->negatif == 1)
+		ft_putchar('-');
+	while((nb_caractere_imprime + s->negatif) + s->nbr_char_a_imprime < s->width)
 	{
 		ft_putchar('0');
 		nb_caractere_imprime++;
 	}
+	if(s->negatif == 1)
+		nb_caractere_imprime++;
 	nb_caractere_imprime += ft_type(s, args);
 	return(nb_caractere_imprime);
 }
@@ -91,6 +87,34 @@ int	ft_less_dot(s_input *s, va_list args)
 	return(nb_caractere_imprime);
 }
 
+int ft_test(s_input *s, va_list args)
+{
+	int nb_caractere_imprime;
+	int bis;
+
+	bis = 0;
+	nb_caractere_imprime = 0;
+	if (s->precision == 0)
+		s->precision = +1;
+	while(bis + s->negatif < (s->width - s->precision))
+	{
+		ft_putchar(' ');
+		bis++;
+	}
+	if(s->negatif == 1)
+		ft_putchar('-');
+	while((nb_caractere_imprime + s->nbr_char_a_imprime) < s->precision)
+	{
+		ft_putchar('0');
+		nb_caractere_imprime++;
+	}
+	if(s->negatif == 1)
+		nb_caractere_imprime++;
+	nb_caractere_imprime += ft_type(s, args);
+	nb_caractere_imprime += bis;
+	return(nb_caractere_imprime);
+}
+
 
 int	ft_print(s_input *s, va_list args)
 {
@@ -101,8 +125,10 @@ int	ft_print(s_input *s, va_list args)
 		s->f_zero = 0;
 	if (s->f_less == 1 && s->f_dot == 0)
 		nb_caractere_imprime += ft_less_only(s, args);
-	if (s->f_dot == 1 && s->f_less == 0)
+	if (s->f_dot == 1 && s->f_less == 0 && s->width_supp == 0)
 		nb_caractere_imprime += ft_dot_only(s, args);
+	if (s->f_dot == 1 && s->f_less == 0 && s->width_supp == 1)
+		nb_caractere_imprime += ft_test(s, args);
 	if (s->f_zero == 1 && s->f_less == 0 && s->f_dot == 0)
 		nb_caractere_imprime += ft_zero_only(s, args);
 	if (s->f_less == 1 && s->f_dot == 1 && s->f_zero == 0)

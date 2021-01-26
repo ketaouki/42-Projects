@@ -17,8 +17,6 @@ void	ft_width(s_input *s, const char *input)
 	s->width = ft_atoi(&input[s->index]);
 	while (input[s->index] >= '0' && input[s->index] <= '9')
 		(s->index)++;
-	if (s->width > 0)
-		s->width_up = 1;
 }
 
 void	ft_precision(s_input *s, const char *input)
@@ -114,6 +112,8 @@ void	ft_add_in_structure(s_input *s, const char *input, va_list args, va_list co
 		ft_type_count(s, copy);
 		(s->index)++;
 	}
+	if (s->width > s->precision)
+		s->width_supp = 1;
 }
 
 void	ft_initialise_structure(s_input *s)
@@ -126,6 +126,6 @@ void	ft_initialise_structure(s_input *s)
 	s->precision = 0;
 	s->nbr_char_a_imprime = 0;
 	s->negatif = 0;
-	s->width = 0;
+	s->width_supp = 0;
 	s->type = '\0';
 }
