@@ -7,7 +7,7 @@
 # include <stdio.h>
 # include <limits.h>
 
-typedef struct s_input
+typedef struct	s_input
 {
 	int		f_less;
 	int		f_zero;
@@ -20,7 +20,7 @@ typedef struct s_input
 	int		negatif;
 	int		width_supp_precision;
 	char	type;
-}	s_input;
+}				s_input;
 
 //		UTILS_FONCTIONS		//
 
