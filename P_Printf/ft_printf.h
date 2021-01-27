@@ -12,14 +12,13 @@ typedef struct s_input
 	int		f_less;
 	int		f_zero;
 	int		f_dot;
-	int		f_star;
 	int		width;
 	int		precision;
 	int		index;
 
 	int		nbr_char_a_imprime;
 	int		negatif;
-	int		width_supp;
+	int		width_supp_precision;
 	char	type;
 }	s_input;
 
@@ -46,15 +45,27 @@ int		ft_putnbr(s_input *s, int n);
 int		ft_type(s_input *s, va_list args);
 int		ft_char_type(s_input *s, va_list args);
 int		ft_d_i_type(s_input *s, va_list args);
+int		ft_str_p_type(s_input *s, va_list args);
 
 
 //		COUNT_FONCTINS		//
 
 int		ft_putnbr_count(s_input *s, int n);
 
-void		ft_type_count(s_input *s, va_list copy);
-void		ft_char_type_count(s_input *s, va_list copy);
-void		ft_d_i_type_count(s_input *s, va_list copy);
+void	ft_type_count(s_input *s, va_list copy);
+void	ft_char_type_count(s_input *s, va_list copy);
+void	ft_d_i_type_count(s_input *s, va_list copy);
+
+
+//		GESTION_FLAG		//
+
+
+int		ft_width_supp_precision(s_input *s, va_list args);
+int		ft_less_dot(s_input *s, va_list args);
+int		ft_zero_only(s_input *s, va_list args);
+int		ft_dot_only(s_input *s, va_list args);
+int		ft_less_only(s_input *s, va_list args);
+int		gestion_flag(s_input *s, va_list args);
 
 //					//
 
