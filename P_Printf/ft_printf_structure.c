@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:08:52 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/27 10:23:44 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/27 14:01:50 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	ft_initialise_structure(s_input *s)
 	s->f_zero = 0;
 	s->f_dot = 0;
 	s->width = 0;
-	s->precision = -1;
+	s->precision = 0;
 	s->nbr_char_a_imprime = 0;
 	s->negatif = 0;
 	s->width_supp_precision = 0;

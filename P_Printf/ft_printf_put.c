@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:08:21 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/27 10:28:07 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/27 13:13:12 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ int		ft_putnbr(s_input *s, int n)
 	nb = (long)n;
 	nb_caractere_imprime = 0;
 	if (nb == 0 && s->precision == 0 && s->f_dot == 1)
-	{
-		ft_putchar(' ');
-		nb_caractere_imprime++;
 		return (nb_caractere_imprime);
-	}
+	// if (nb == 0 && s->precision == 1 && s->f_dot == 1)
+	// {
+	// 	ft_putchar(' ');
+	// 	nb_caractere_imprime++;
+	// 	return (nb_caractere_imprime);
+	// }
 	if (nb < 0)
 		nb = nb * -1;
 	if (nb > 9)

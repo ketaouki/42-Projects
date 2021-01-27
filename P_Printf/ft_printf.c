@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 08:52:57 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/27 11:25:52 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/27 14:21:27 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,19 +91,21 @@ int	ft_width_supp_precision(s_input *s, va_list args)
 {
 	int nb_caractere_imprime;
 	int tempo;
+	// int test;
 
 	tempo = 0;
+	// test = 0;
 	nb_caractere_imprime = 0;
-	if (s->precision == 0)
-		s->precision = +1;
-	while (tempo + s->negatif < (s->width - s->precision))
+	//if (s->precision == 0 && s->nbr_char_a_imprime >= 1)
+	//	s->precision += 1;
+	while (tempo + s->negatif < (s->width - (s->precision)))
 	{
 		ft_putchar(' ');
 		tempo++;
 	}
 	if (s->negatif == 1)
 		ft_putchar('-');
-	while ((nb_caractere_imprime + s->nbr_char_a_imprime) < s->precision)
+	while ((nb_caractere_imprime + s->nbr_char_a_imprime) < (s->precision))
 	{
 		ft_putchar('0');
 		nb_caractere_imprime++;
