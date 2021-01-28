@@ -1,129 +1,196 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/22 08:52:57 by ketaouki          #+#    #+#             */
+/*   Updated: 2021/01/28 10:06:12 by ketaouki         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void	ft_putchar(char c)
+int	ft_less_only(s_input *s, va_list args)
 {
-	unsigned char	d;
+	int nb_caractere_imprime;
 
-	d = (unsigned char)c;
-	write(1, &d, 1);
+	nb_caractere_imprime = 0;
+	if (s->negatif == 1)
+		nb_caractere_imprime += ft_putneg();
+	nb_caractere_imprime += ft_type(s, args);
+	while ((nb_caractere_imprime) < s->width)
+	{
+		ft_putchar(' ');
+		nb_caractere_imprime++;
+	}
+	return (nb_caractere_imprime);
 }
 
-int		ft_atoi(const char *str)
+int	ft_dot_only(s_input *s, va_list args)
 {
-	int		i;
-	int		n;
-	long	res;
+	int nb_caractere_imprime;
 
-	i = 0;
-	n = 1;
-	res = 0;
-	while (((str[i] >= 9 && str[i] <= 13) || str[i] == 32) && str[i])
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	nb_caractere_imprime = 0;
+	if (s->negatif == 1)
+		ft_putchar('-');
+	while ((nb_caractere_imprime + s->nbr_char_a_imprime) < s->precision)
 	{
-		if (str[i] == '-')
-			n = -1;
-		i++;
+		ft_putchar('0');
+		nb_caractere_imprime++;
 	}
-	while ((str[i] >= '0' && str[i] <= '9') && str[i])
-	{
-		res = res * 10;
-		res = res + (str[i] - '0');
-		i++;
-	}
-	res = res * n;
-	return (res);
+	if (s->negatif == 1)
+		nb_caractere_imprime++;
+	nb_caractere_imprime += ft_type(s, args);
+	return (nb_caractere_imprime);
 }
 
-
-void	ft_initialise_structure(t_input	*s)
+int	ft_zero_only(s_input *s, va_list args)
 {
-	s->s_less = 0;
-	s->s_zero = 0;
-	s->s_dot = 0;
-	s->s_star = 0;
-	s->width = 0;
-	s->precision = 0;
-	s->index = 0;
+	int nb_caractere_imprime;
+
+	nb_caractere_imprime = 0;
+	if (s->negatif == 1)
+		ft_putchar('-');
+	while ((nb_caractere_imprime + s->negatif) + s->nbr_char_a_imprime < s->width)
+	{
+		ft_putchar('0');
+		nb_caractere_imprime++;
+	}
+	if (s->negatif == 1)
+		nb_caractere_imprime++;
+	nb_caractere_imprime += ft_type(s, args);
+	return (nb_caractere_imprime);
 }
 
-void	ft_s_structure(t_input *s, const char **input, va_list args)
+int	ft_less_dot(s_input *s, va_list args)
 {
-	if (**input >= '1' || **input <= '9')
+	int nb_caractere_imprime;
+
+	nb_caractere_imprime = 0;
+	if (s->precision >= s->width)
+		nb_caractere_imprime += ft_dot_only(s, args);
+	if (s->precision < s->width)
 	{
-		s->width = ft_atoi(*input);
-		while (**input >= '0' && **input <= '9')
-			(*input)++;
+		nb_caractere_imprime += ft_dot_only(s, args);
+		while (nb_caractere_imprime < s->width)
+		{
+			ft_putchar(' ');
+			nb_caractere_imprime++;
+		}
 	}
-	if (**input == '-')
-	{
-		s->s_less = 1;
-		(*input)++;
-		s->width = 1;
-		if (**input >= '0' || **input <= '9')
-			s->width = ft_atoi(*input);
-		while (**input >= '0' && **input <= '9')
-			(*input)++;
-	}
-	if (**input == '0')
-	{
-		s->s_zero = 1;
-		(*input)++;
-		s->width = 1;
-		if (**input >= '0' || **input <= '9')
-			s->width = ft_atoi(*input);
-		while (**input >= '0' && **input <= '9')
-			(*input)++;
-	}
-	if (**input == '*')
-	{
-		s->s_star = 1;
-		(*input)++;
-		s->width = 1;
-		if (**input >= '0' || **input <= '9')
-			s->width = va_arg(args, int);
-		while (**input >= '0' && **input <= '9')
-			(*input)++;
-	}
-	if(**input == '.')
-	{
-		s->s_dot = 1;
-		(*input)++;
-		s->precision = 1;
-		if (**input >= '0' || **input <= '9')
-			s->precision = ft_atoi(*input);
-		while (**input >= '0' && **input <= '9')
-			(*input)++;
-	}
-	if (**input == 'c' || **input == 's' || **input == 'p' ||
-			**input == 'd' || **input == 'i' || **input == 'u' ||
-			**input == 'x' || **input == 'X' || **input == '%')
-	{
-		s->type = **input;
-		(*input)++;
-	}
+	return (nb_caractere_imprime);
 }
 
-int	lecture_chaine(const char *input, va_list args, va_list copy)
+int	ft_width_supp_precision(s_input *s, va_list args)
+{
+	int nb_caractere_imprime;
+	int tempo;
+
+	tempo = 0;
+	nb_caractere_imprime = 0;
+	if (s->precision == 0 && s->f_dot == 1 && s->negatif == 1)
+	{
+		tempo += s->negatif;
+		nb_caractere_imprime--;
+	}
+	while (tempo + s->negatif < (s->width - (s->precision)))
+	{
+		ft_putchar(' ');
+		tempo++;
+	}
+	if (s->negatif == 1)
+		ft_putchar('-');
+	while ((nb_caractere_imprime + s->nbr_char_a_imprime) < (s->precision))
+	{
+		ft_putchar('0');
+		nb_caractere_imprime++;
+	}
+	if (s->negatif == 1)
+		nb_caractere_imprime++;
+	nb_caractere_imprime += ft_type(s, args);
+	nb_caractere_imprime += tempo;
+	return (nb_caractere_imprime);
+}
+
+int	gestion_flag(s_input *s, va_list args)
 {
 	int	nb_caractere_imprime;
-	t_input s;
 
-	ft_initialise_structure(&s);
 	nb_caractere_imprime = 0;
-	while (input[s.index])
+	if (s->f_less == 1 && s->f_zero == 1)
+		s->f_zero = 0;
+	if (s->f_less == 1 && s->f_dot == 0 && s->f_zero == 0)
+		nb_caractere_imprime += ft_less_only(s, args);
+	if (s->f_less == 0 && s->f_dot == 1 && s->width_supp_precision == 0)
+		nb_caractere_imprime += ft_dot_only(s, args);
+	if (s->f_less == 0 && s->f_dot == 1 && s->width_supp_precision == 1)
+		nb_caractere_imprime += ft_width_supp_precision(s, args);
+	if (s->f_less == 0 && s->f_dot == 0 && s->f_zero == 1)
+		nb_caractere_imprime += ft_zero_only(s, args);
+	if (s->f_less == 1 && s->f_dot == 1 && s->f_zero == 0)
+		nb_caractere_imprime += ft_less_dot(s, args);
+	return (nb_caractere_imprime);
+}
+
+int	ft_print(s_input *s, va_list args)
+{
+	int	nb_caractere_imprime;
+
+	nb_caractere_imprime = 0;
+	nb_caractere_imprime += gestion_flag(s, args);
+	while ((nb_caractere_imprime) + s->nbr_char_a_imprime < s->width)
 	{
-		if (input[s.index] == '%')
+		ft_putchar(' ');
+		nb_caractere_imprime++;
+	}
+	if (s->type == 'c' || s->type == 's' || s->type == 'p' ||
+		s->type == 'd' || s->type == 'i' || s->type == 'u' ||
+		s->type == 'x' || s->type == 'X' || s->type == '%')
+	{
+		if (s->negatif == 1)
+			nb_caractere_imprime += ft_putneg();
+		nb_caractere_imprime += ft_type(s, args);
+	}
+	if (s->width < 0)
+	{
+		s->width *= -1;
+		while (nb_caractere_imprime < s->width)
 		{
-			s.index++;
-			ft_initialise_structure(&s);
-			ft_s_structure(&s, &input, args);
-			//nb_caractere_imprime += ft_conversion(&input, args, copy);
+			ft_putchar(' ');
+			nb_caractere_imprime++;
+		}
+	}
+	return (nb_caractere_imprime);
+}
+
+int	read_input(const char *input, va_list args, s_input *s, va_list copy)
+{
+	int	nb_caractere_imprime;
+
+	nb_caractere_imprime = 0;
+	while (input[s->index])
+	{
+		if (input[s->index] == '%')
+		{
+			(s->index)++;
+			ft_initialise_structure(s);
+			ft_add_in_structure(s, input, args, copy);
+			// printf("\nflag less = %d\n",s->f_less);
+			// printf("flag zero = %d\n",s->f_zero);
+			// printf("flag dot  = %d\n",s->f_dot);
+			// printf("flag star = %d\n",s->f_star);
+			// printf("largeur   = %d\n",s->width);
+			// printf("precision = %d\n",s->precision);
+			// printf("type 	  = %c\n",s->type);
+			// printf("nbr char  = %d\n", s->nbr_char_a_imprime);
+			nb_caractere_imprime += ft_print(s, args);
 		}
 		else
 		{
-			ft_putchar(input[s.index]);
-			s.index++;
+			ft_putchar(input[s->index]);
+			(s->index)++;
 			nb_caractere_imprime++;
 		}
 	}
@@ -135,10 +202,12 @@ int	ft_printf(const char *input, ...)
 	int		nb_caractere_imprime;
 	va_list	args;
 	va_list	copy;
+	s_input	s;
 
+	s.index = 0;
 	va_start(args, input);
 	va_copy(copy, args);
-	nb_caractere_imprime = lecture_chaine(input, args, copy);
+	nb_caractere_imprime = read_input(input, args, &s, copy);
 	va_end(args);
 	return (nb_caractere_imprime);
 }
