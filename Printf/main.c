@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 10:15:21 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/28 10:03:02 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/28 10:48:34 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	main(void)
 	// printf("\n");
 
 	printf("\n TEST 57\n");
-	printf(" %d ", printf("%10.0d", UINT_MAX));
+	printf(" %d ", printf(" %-4s %-4s ", "123", "4567"));
 	printf("\n");
-	printf(" %d ", ft_printf("%10.0d", UINT_MAX));
+	printf(" %d ", ft_printf(" %-4s %-4s ", "123", "4567"));
 
 	// printf("\n TEST 61\n");
 	// printf(" %d ", printf("%010.0d", UINT_MAX + 1));
@@ -57,9 +57,6 @@ int	main(void)
 	// printf(" %d ", printf("%3.d", 0));
 	// printf("\n");
 	// printf(" %d ", ft_printf("%3.d", 0));
-
-
-
 
 	return (0);
 }

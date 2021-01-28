@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:08:21 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/28 09:28:18 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/01/28 10:39:08 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-int	ft_putneg()
+int		ft_putneg(void)
 {
 	int nb_caractere_imprime;
 
@@ -50,5 +50,24 @@ int		ft_putnbr(s_input *s, int n)
 		nb_caractere_imprime++;
 	}
 	nb_caractere_imprime++;
+	return (nb_caractere_imprime);
+}
+
+int		ft_putstr(char *str)
+{
+	int	i;
+	int	nb_caractere_imprime;
+
+	i = 0;
+	nb_caractere_imprime = 0;
+	if (str)
+	{
+		while (str[i])
+		{
+			ft_putchar(str[i]);
+			i++;
+			nb_caractere_imprime++;
+		}
+	}
 	return (nb_caractere_imprime);
 }

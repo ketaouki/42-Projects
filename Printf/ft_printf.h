@@ -40,8 +40,10 @@ void	ft_add_in_structure(s_input *s, const char *input, va_list args, va_list co
 //		PUT_FONCTIONS		//
 
 void	ft_putchar(char c);
+int		ft_putstr(char *str);
 int		ft_putnbr(s_input *s, int n);
 int		ft_putneg();
+
 
 int		ft_type(s_input *s, va_list args);
 int		ft_char_type(s_input *s, va_list args);
@@ -52,9 +54,11 @@ int		ft_str_p_type(s_input *s, va_list args);
 //		COUNT_FONCTINS		//
 
 int		ft_putnbr_count(s_input *s, int n);
+int		ft_putstr_count(char *str);
 
 void	ft_type_count(s_input *s, va_list copy);
 void	ft_char_type_count(s_input *s, va_list copy);
+int		ft_str_p_type(s_input *s, va_list args);
 void	ft_d_i_type_count(s_input *s, va_list copy);
 
 
