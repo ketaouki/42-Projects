@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:12:44 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/02/01 10:38:59 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/02/01 12:54:26 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,22 @@ int		ft_putstr_count(s_input *s, char *str)
 	nb_caractere_imprime = 0;
 	if (str)
 	{
+		if (s->f_dot == 1)
+		{
+			while (str[i] && i < s->precision)
+			{
+				i++;
+				nb_caractere_imprime++;
+			}
+			return (nb_caractere_imprime);
+		}
 		while (str[i])
 		{
 			i++;
 			nb_caractere_imprime++;
 		}
 	}
+	if (str == NULL)
+		nb_caractere_imprime = 6;
 	return (nb_caractere_imprime);
 }

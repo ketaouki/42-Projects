@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 08:52:57 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/02/01 10:05:57 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/02/01 13:24:01 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,10 +134,13 @@ int	gestion_flag(s_input *s, va_list args)
 		s->f_zero = 0;
 	if (s->f_less == 1 && s->f_dot == 0 && s->f_zero == 0)
 		nb_caractere_imprime += ft_less_only(s, args);
-	if (s->f_less == 0 && s->f_dot == 1 && s->width_supp_precision == 0)
-		nb_caractere_imprime += ft_dot_only(s, args);
-	if (s->f_less == 0 && s->f_dot == 1 && s->width_supp_precision == 1)
-		nb_caractere_imprime += ft_width_supp_precision(s, args);
+	if (s->type != 's')
+	{
+		if (s->f_less == 0 && s->f_dot == 1 && s->width_supp_precision == 0)
+			nb_caractere_imprime += ft_dot_only(s, args);
+		if (s->f_less == 0 && s->f_dot == 1 && s->width_supp_precision == 1)
+	 		nb_caractere_imprime += ft_width_supp_precision(s, args);
+	}
 	if (s->f_less == 0 && s->f_dot == 0 && s->f_zero == 1)
 		nb_caractere_imprime += ft_zero_only(s, args);
 	if (s->f_less == 1 && s->f_dot == 1 && s->f_zero == 0)

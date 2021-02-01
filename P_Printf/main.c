@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 10:15:21 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/02/01 10:38:45 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/02/01 12:56:09 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,27 @@ int	main(void)
 	// printf(" %d ", printf("%05.3d", 10));
 	// printf("\n");
 
-	printf("\n TEST 19\n");
-	printf(" %d ", ft_printf(" %*.4s", 10, "123"));
+	printf("\n TEST 34\n");
+	printf(" %d ", ft_printf(" %-4.s ", NULL));
 	printf("\n");
-	printf(" %d ", printf(" %*.4s", 10, "123"));
+	printf(" %d ", printf(" %-4.s ", NULL));
 
-	printf("\n TEST 22\n");
-	printf(" %d ", ft_printf(" %*.5s %*.5s ", -10, "123", 10, "4567"));
+	printf("\n TEST 35\n");
+	printf(" %d ", ft_printf(" %-9.3s ", NULL));
 	printf("\n");
-	printf(" %d ", printf(" %*.5s %*.5s ", -10, "123", 10, "4567"));
+	printf(" %d ", printf(" %-9.3s ", NULL));
 
-	printf("\n TEST 24\n");
+	printf("\n TEST 36\n");
 
-	printf(" %d ", ft_printf(" %*.5s %*.5s ", -10, "123", -10, "4567"));
+	printf(" %d ", ft_printf(" %.*s ", -10, NULL));
 	printf("\n");
-	printf(" %d ", printf(" %*.5s %*.5s ", -10, "123", -10, "4567"));
+	printf(" %d ", printf(" %.*s ", -2, NULL));
 
-	printf("\n TEST 32\n");
+	// printf("\n TEST 32\n");
 
-	printf(" %d ", ft_printf("%.4s", ""));
-	printf("\n");
-	printf(" %d ", printf("%.4s", ""));
+	// printf(" %d ", ft_printf("%.4s", ""));
+	// printf("\n");
+	// printf(" %d ", printf("%.4s", ""));
 
 
 	// printf("\n TEST 61\n");
