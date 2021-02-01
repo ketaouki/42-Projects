@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:08:21 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/27 13:13:12 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/02/01 10:40:46 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,31 +20,31 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-int		ft_putnbr(s_input *s, int n)
+int		ft_putstr(s_input *s, char *str)
 {
-	long	nb;
-	int		nb_caractere_imprime;
+	int	i;
+	int	nb_caractere_imprime;
 
-	nb = (long)n;
+	i = 0;
 	nb_caractere_imprime = 0;
-	if (nb == 0 && s->precision == 0 && s->f_dot == 1)
-		return (nb_caractere_imprime);
-	// if (nb == 0 && s->precision == 1 && s->f_dot == 1)
-	// {
-	// 	ft_putchar(' ');
-	// 	nb_caractere_imprime++;
-	// 	return (nb_caractere_imprime);
-	// }
-	if (nb < 0)
-		nb = nb * -1;
-	if (nb > 9)
-		ft_putnbr(s, nb / 10);
-	ft_putchar((nb % 10) + '0');
-	while (n > 9)
+	if (str)
 	{
-		n = n / 10;
-		nb_caractere_imprime++;
+		if (s->f_dot == 1)
+		{
+			while (str[i] && i < s->precision)
+			{
+				ft_putchar(str[i]);
+				i++;
+				nb_caractere_imprime++;
+			}
+			return (nb_caractere_imprime);
+		}
+		while (str[i])
+		{
+			ft_putchar(str[i]);
+			i++;
+			nb_caractere_imprime++;
+		}
 	}
-	nb_caractere_imprime++;
 	return (nb_caractere_imprime);
 }

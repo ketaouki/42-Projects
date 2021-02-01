@@ -6,7 +6,7 @@ SRC = 	ft_printf.c \
 		ft_printf_count.c \
 		ft_printf_type_count.c \
 		ft_printf_type.c \
-		ft_printf_structure.c
+		ft_printf_structure.c 
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 OBJ=$(SRC:.c=.o)
