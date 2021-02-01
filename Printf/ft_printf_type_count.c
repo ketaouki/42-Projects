@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 08:50:20 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/01/27 10:27:48 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/02/01 09:35:29 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,26 @@ void	ft_char_type_count(s_input *s, va_list copy)
 
 	c = va_arg(copy, int);
 	s->nbr_char_a_imprime++;
+}
+
+int	ft_str_p_type_count(s_input *s, va_list copy)
+{
+	char	*str;
+	int		nb_caractere_imprime;
+
+	nb_caractere_imprime = 0;
+	if (s->type == 's')
+	{
+		str = va_arg(copy, char *);
+		nb_caractere_imprime += ft_putstr_count(str);
+	}
+	if (s->type == 'p')
+	{
+		str = va_arg(copy, void *);
+		nb_caractere_imprime += 2;
+		nb_caractere_imprime += ft_putadress_hexa_count(str, "0123456789abcdef");
+	}
+	return (nb_caractere_imprime);
 }
 
 void	ft_d_i_type_count(s_input *s, va_list copy)
@@ -35,10 +55,38 @@ void	ft_d_i_type_count(s_input *s, va_list copy)
 		s->nbr_char_a_imprime = 10;
 }
 
+void	ft_u_x_type_count(s_input *s, va_list copy)
+{
+	unsigned int	numunsigned;
+
+	numunsigned = 0;
+	if (s->type == 'u')
+	{
+		numunsigned = va_arg(copy, int);
+		s->nbr_char_a_imprime += ft_putnbr_count_unsigned(s, numunsigned);
+	}
+	if (s->type == 'x')
+	{
+		numunsigned = va_arg(copy, int);
+		s->nbr_char_a_imprime += ft_putnbr_base_count(numunsigned, "0123456789abcdef");
+	}
+	if (s->type == 'X')
+	{
+		numunsigned = va_arg(copy, int);
+		s->nbr_char_a_imprime += ft_putnbr_base_count(numunsigned, "0123456789ABCDEF");
+	}
+}
+
+
+
 void	ft_type_count(s_input *s, va_list copy)
 {
 	if (s->type == 'c')
 		ft_char_type_count(s, copy);
+	if (s->type == 's' || s->type == 'p')
+		ft_str_p_type_count(s, copy);
 	if (s->type == 'd' || s->type == 'i')
 		ft_d_i_type_count(s, copy);
+	if (s->type == 'u' || s->type == 'x' || s->type == 'X')
+		ft_u_x_type_count(s, copy);
 }
