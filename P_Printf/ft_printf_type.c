@@ -70,24 +70,14 @@ int	ft_d_i_type(s_input *s, va_list args)
 int	ft_u_x_type(s_input *s, va_list args)
 {
 	int				nb_caractere_imprime;
-	unsigned int	numunsigned;
+	unsigned long	numunsigned;
 
 	numunsigned = 0;
 	nb_caractere_imprime = 0;
 	if (s->type == 'u')
 	{
-		numunsigned = va_arg(args, int);
-		nb_caractere_imprime += ft_putnbr(s, numunsigned);
-	}
-	if (s->type == 'x')
-	{
-		numunsigned = va_arg(args, int);
-		nb_caractere_imprime += ft_putnbr_base(numunsigned, "0123456789abcdef");
-	}
-	if (s->type == 'X')
-	{
-		numunsigned = va_arg(args, int);
-		nb_caractere_imprime += ft_putnbr_base(numunsigned, "0123456789ABCDEF");
+		numunsigned = va_arg(args, long);
+		nb_caractere_imprime += ft_putnbr_unsigned(s, numunsigned);
 	}
 	s->type = '\0';
 	return (nb_caractere_imprime);

@@ -44,7 +44,7 @@ int		ft_putstr(s_input *s, char *str);
 int		ft_putadress_hexa(void *str, char *base);
 int		ft_putnbr(s_input *s, int n);
 int		ft_putneg(void);
-int		ft_putnbr_base(unsigned int nbr, char *base);
+int		ft_putnbr_unsigned(s_input *s, unsigned long n);
 
 
 int		ft_type(s_input *s, va_list args);
@@ -60,14 +60,13 @@ void	ft_char_type_count(s_input *s, va_list copy);
 int		ft_putstr_count(s_input *s, char *str);
 int		ft_putadress_hexa_count(void *str, char *base);
 int		ft_putnbr_count(s_input *s, int n);
-int		ft_putnbr_count_unsigned(s_input *s, int n);
-int		ft_putnbr_base_count(unsigned int nbr, char *base);
+int		ft_putnbr_count_unsigned(s_input *s, unsigned long n);
 
 
 void	ft_type_count(s_input *s, va_list copy);
 void	ft_str_p_type_count(s_input *s, va_list args);
 void	ft_d_i_type_count(s_input *s, va_list copy);
-
+void	ft_u_x_type_count(s_input *s, va_list copy);
 //		GESTION_FLAG		//
 
 

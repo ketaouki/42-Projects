@@ -95,12 +95,12 @@ int		ft_putnbr_count(s_input *s, int n)
 	return (nb_caractere_imprime);
 }
 
-int		ft_putnbr_count_unsigned(s_input *s, int n)
+int		ft_putnbr_count_unsigned(s_input *s, unsigned long n)
 {
 	unsigned long	nb;
 	int		nb_caractere_imprime;
 
-	nb = (unsigned long)n;
+	nb = (long)n;
 	nb_caractere_imprime = 0;
 	if (nb == 0 && s->precision == 0 && s->f_dot == 1)
 	{
@@ -118,34 +118,6 @@ int		ft_putnbr_count_unsigned(s_input *s, int n)
 	while (n > 9)
 	{
 		n = n / 10;
-		nb_caractere_imprime++;
-	}
-	nb_caractere_imprime++;
-	return (nb_caractere_imprime);
-}
-
-int		ft_putnbr_base_count(unsigned int nbr, char *base)
-{
-	int				i;
-	unsigned int	k;
-	unsigned int	nb;
-	int				nb_caractere_imprime;
-
-	i = 0;
-	nb = nbr;
-	k = ft_strlen(base);
-	nb_caractere_imprime = 0;
-	if (nb < 0)
-	{
-		nb = nb * -1;
-		nbr = nbr * -1;
-		nb_caractere_imprime++;
-	}
-	if (nb >= k)
-		ft_putnbr_base_count((nb / k), base);
-	while (nbr > 9)
-	{
-		nbr = nbr / 10;
 		nb_caractere_imprime++;
 	}
 	nb_caractere_imprime++;

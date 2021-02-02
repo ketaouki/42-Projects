@@ -17,8 +17,8 @@ int	ft_less_only(s_input *s, va_list args)
 	int nb_caractere_imprime;
 
 	nb_caractere_imprime = 0;
-	// if (s->negatif == 1)
-	// 	nb_caractere_imprime += ft_putneg();
+	if (s->negatif == 1)
+		nb_caractere_imprime += ft_putneg();
 	nb_caractere_imprime += ft_type(s, args);
 	while ((nb_caractere_imprime) < s->width)
 	{
@@ -140,6 +140,7 @@ int	gestion_flag(s_input *s, va_list args)
 			nb_caractere_imprime += ft_dot_only(s, args);
 		if (s->f_less == 0 && s->f_dot == 1 && s->width_supp_precision == 1)
 	 		nb_caractere_imprime += ft_width_supp_precision(s, args);
+
 	}
 	if (s->f_less == 0 && s->f_dot == 0 && s->f_zero == 1)
 		nb_caractere_imprime += ft_zero_only(s, args);
@@ -163,8 +164,8 @@ int	ft_print(s_input *s, va_list args)
 		s->type == 'd' || s->type == 'i' || s->type == 'u' ||
 		s->type == 'x' || s->type == 'X' || s->type == '%')
 	{
-		// if (s->negatif == 1)
-		// 	nb_caractere_imprime += ft_putneg();
+		if (s->negatif == 1)
+			nb_caractere_imprime += ft_putneg();
 		nb_caractere_imprime += ft_type(s, args);
 	}
 	if (s->width < 0)

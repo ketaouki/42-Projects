@@ -54,23 +54,13 @@ void	ft_d_i_type_count(s_input *s, va_list copy)
 
 void	ft_u_x_type_count(s_input *s, va_list copy)
 {
-	unsigned int	numunsigned;
+	unsigned long	numunsigned;
 
 	numunsigned = 0;
 	if (s->type == 'u')
 	{
-		numunsigned = va_arg(copy, int);
+		numunsigned = va_arg(copy, long);
 		s->nbr_char_a_imprime += ft_putnbr_count_unsigned(s, numunsigned);
-	}
-	if (s->type == 'x')
-	{
-		numunsigned = va_arg(copy, int);
-		s->nbr_char_a_imprime += ft_putnbr_base_count(numunsigned, "0123456789abcdef");
-	}
-	if (s->type == 'X')
-	{
-		numunsigned = va_arg(copy, int);
-		s->nbr_char_a_imprime += ft_putnbr_base_count(numunsigned, "0123456789ABCDEF");
 	}
 }
 

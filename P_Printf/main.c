@@ -28,33 +28,35 @@ int	main(void)
 	// printf("\n");
 	// printf(" %d ", printf(" %p ", -1));
 
-	printf("\n TEST 3\n");
-	printf(" %d ", ft_printf(" *%-*.*u* *%*.*u* ", 4, 5, 10, 10, 21, -10));
-	printf("\n");
-	printf(" %d ", printf(" *%-*.*u* *%*.*u* ", 4, 5, 10, 10, 21, -10));
+	//printf("\n TEST 9\n");
+	//printf(" %d ", ft_printf(" *%-*.*u* *%*.*u* ", 6, 2, 102, 10, 21, -101));
+	//printf("\n");
+	//printf(" %d ", printf(" *%-*.*u* *%*.*u* ", 6, 2, 102, 10, 21, -101));
 
-	// printf("\n TEST 6\n");
+	// printf("\n TEST 13\n");
 
-	// printf(" %d ", ft_printf(" %10p %10p ", 1, -1));
+	// printf(" %d ", ft_printf(" 0*%0-*.*u*0 0*%0*.*u*0 ", 2, 6, 102, 21, 10, -101));
 	// printf("\n");
-	// printf(" %d ", printf(" %10p %10p ", 1, -1));
+	// printf(" %d ", printf(" 0*%0-*.*u*0 0*%0*.*u*0 ", 2, 6, 102, 21, 10, -101));
 
-	// printf("\n TEST 32\n");
+	// printf("\n TEST 18\n");
 
-	// printf(" %d ", ft_printf("%.4s", ""));
+	// printf(" %d ", ft_printf(" --0*%0*.0u*0 0*%0*.10u*0-- ", -21, LONG_MAX, 21, LONG_MIN));
 	// printf("\n");
-	// printf(" %d ", printf("%.4s", ""));
+	// printf(" %d ", printf(" --0*%0*.0u*0 0*%0*.10u*0-- ", -21, LONG_MAX, 21, LONG_MIN));
 
 
-	// printf("\n TEST 61\n");
-	// printf(" %d ", printf("%010.0d", UINT_MAX + 1));
+	 printf("\n TEST 72\n");
+printf("UINT MAX %d\n", UINT_MAX);
+
+	 printf(" %d ", printf("%9.0u", -1));
+	 printf("\n");
+	 printf(" %d ", ft_printf("%9.0u", -1));
+
+	// printf("\n TEST 24\n");
+	// printf(" %d ", printf("%9.10u", UINT_MAX));
 	// printf("\n");
-	// printf(" %d ", ft_printf("%010.0d", UINT_MAX + 1));
-
-	// printf("\n TEST 65\n");
-	// printf(" %d ", printf("%011.0d", UINT_MAX + 1));
-	// printf("\n");
-	// printf(" %d ", ft_printf("%011.0d", UINT_MAX + 1));
+	// printf(" %d ", ft_printf("%9.10u", UINT_MAX));
 
 	// printf("\n TEST 69\n");
 	// printf(" %d ", printf("%.0d", 0));

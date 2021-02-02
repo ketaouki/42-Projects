@@ -104,7 +104,10 @@ int		ft_putnbr(s_input *s, int n)
 	if (nb == 0 && s->precision == 0 && s->f_dot == 1)
 		return (nb_caractere_imprime);
 	if (nb < 0)
+	{
+		n = n * -1;
 		nb = nb * -1;
+	}
 	if (nb > 9)
 		ft_putnbr(s, nb / 10);
 	ft_putchar((nb % 10) + '0');
@@ -117,44 +120,20 @@ int		ft_putnbr(s_input *s, int n)
 	return (nb_caractere_imprime);
 }
 
-int		ft_putnbr_base(unsigned int nbr, char *base)
-{
-	int				i;
-	unsigned int	k;
-	unsigned int	nb;
-	int				nb_caractere_imprime;
-
-	i = 0;
-	nb = nbr;
-	k = ft_strlen(base);
-	nb_caractere_imprime = 0;
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb = nb * -1;
-		nb_caractere_imprime++;
-	}
-	if (nb >= k)
-	{
-		ft_putnbr_base((nb / k), base);
-		nb_caractere_imprime++;
-	}
-	ft_putchar(base[nb % k]);
-	nb_caractere_imprime++;
-	return (nb_caractere_imprime);
-}
-
-int		ft_putnbr_unsigned(s_input *s, int n)
+int		ft_putnbr_unsigned(s_input *s, unsigned long n)
 {
 	unsigned long	nb;
 	int		nb_caractere_imprime;
 
-	nb = (unsigned long)n;
+	nb = (long)n;
 	nb_caractere_imprime = 0;
 	if (nb == 0 && s->precision == 0 && s->f_dot == 1)
 		return (nb_caractere_imprime);
 	if (nb < 0)
+	{
+		n = n * -1;
 		nb = nb * -1;
+	}
 	if (nb > 9)
 		ft_putnbr(s, nb / 10);
 	ft_putchar((nb % 10) + '0');
