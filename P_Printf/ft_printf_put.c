@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:08:21 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/02/01 14:23:53 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 11:18:32 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int		ft_putadress_hexa(void *str, char *base)
 
 int		ft_putneg(void)
 {
-	int nb_caractere_imprime;
+	int	nb_caractere_imprime;
 
 	nb_caractere_imprime = 0;
 	ft_putchar('-');
@@ -123,17 +123,12 @@ int		ft_putnbr(s_input *s, int n)
 int		ft_putnbr_unsigned(s_input *s, unsigned long n)
 {
 	unsigned long	nb;
-	int		nb_caractere_imprime;
+	int				nb_caractere_imprime;
 
 	nb = (long)n;
 	nb_caractere_imprime = 0;
 	if (nb == 0 && s->precision == 0 && s->f_dot == 1)
 		return (nb_caractere_imprime);
-	if (nb < 0)
-	{
-		n = n * -1;
-		nb = nb * -1;
-	}
 	if (nb > 9)
 		ft_putnbr(s, nb / 10);
 	ft_putchar((nb % 10) + '0');

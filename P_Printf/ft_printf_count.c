@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:12:44 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/02/01 14:25:51 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 11:18:28 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int		ft_putnbr_count(s_input *s, int n)
 int		ft_putnbr_count_unsigned(s_input *s, unsigned long n)
 {
 	unsigned long	nb;
-	int		nb_caractere_imprime;
+	int				nb_caractere_imprime;
 
 	nb = (long)n;
 	nb_caractere_imprime = 0;
@@ -106,12 +106,6 @@ int		ft_putnbr_count_unsigned(s_input *s, unsigned long n)
 	{
 		nb_caractere_imprime++;
 		return (nb_caractere_imprime);
-	}
-	if (nb < 0)
-	{
-		nb = nb * -1;
-		n = n * -1;
-		nb_caractere_imprime++;
 	}
 	if (nb > 9)
 		ft_putnbr_count(s, nb / 10);

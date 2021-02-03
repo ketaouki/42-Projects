@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 08:52:57 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/02/01 13:24:01 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 13:48:44 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_less_only(s_input *s, va_list args)
 {
-	int nb_caractere_imprime;
+	int	nb_caractere_imprime;
 
 	nb_caractere_imprime = 0;
 	if (s->negatif == 1)
@@ -30,7 +30,7 @@ int	ft_less_only(s_input *s, va_list args)
 
 int	ft_dot_only(s_input *s, va_list args)
 {
-	int nb_caractere_imprime;
+	int	nb_caractere_imprime;
 
 	nb_caractere_imprime = 0;
 	if (s->precision < 0)
@@ -47,7 +47,6 @@ int	ft_dot_only(s_input *s, va_list args)
 	}
 	if (s->negatif == 1)
 		nb_caractere_imprime++;
-
 	nb_caractere_imprime += ft_type(s, args);
 	return (nb_caractere_imprime);
 }
@@ -72,7 +71,7 @@ int	ft_zero_only(s_input *s, va_list args)
 
 int	ft_less_dot(s_input *s, va_list args)
 {
-	int nb_caractere_imprime;
+	int	nb_caractere_imprime;
 
 	nb_caractere_imprime = 0;
 	if (s->precision >= s->width)
@@ -91,8 +90,8 @@ int	ft_less_dot(s_input *s, va_list args)
 
 int	ft_width_supp_precision(s_input *s, va_list args)
 {
-	int nb_caractere_imprime;
-	int tempo;
+	int	nb_caractere_imprime;
+	int	tempo;
 
 	tempo = 0;
 	nb_caractere_imprime = 0;
@@ -139,8 +138,7 @@ int	gestion_flag(s_input *s, va_list args)
 		if (s->f_less == 0 && s->f_dot == 1 && s->width_supp_precision == 0)
 			nb_caractere_imprime += ft_dot_only(s, args);
 		if (s->f_less == 0 && s->f_dot == 1 && s->width_supp_precision == 1)
-	 		nb_caractere_imprime += ft_width_supp_precision(s, args);
-
+			nb_caractere_imprime += ft_width_supp_precision(s, args);
 	}
 	if (s->f_less == 0 && s->f_dot == 0 && s->f_zero == 1)
 		nb_caractere_imprime += ft_zero_only(s, args);
@@ -216,5 +214,6 @@ int	ft_printf(const char *input, ...)
 	va_copy(copy, args);
 	nb_caractere_imprime = read_input(input, args, &s, copy);
 	va_end(args);
+	ft_initialise_structure(&s);
 	return (nb_caractere_imprime);
 }

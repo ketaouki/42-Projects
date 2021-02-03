@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 08:50:20 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/02/01 14:22:53 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/02/03 08:25:30 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_str_p_type_count(s_input *s, va_list copy)
 	if (s->type == 'p')
 	{
 		str = va_arg(copy, void *);
-		s->nbr_char_a_imprime  += 2;
+		s->nbr_char_a_imprime += 2;
 		s->nbr_char_a_imprime += ft_putadress_hexa_count(str, "0123456789abcdef");
 	}
 }
