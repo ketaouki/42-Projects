@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:12:44 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/02/03 11:18:28 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 10:27:56 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,23 +95,61 @@ int		ft_putnbr_count(s_input *s, int n)
 	return (nb_caractere_imprime);
 }
 
-int		ft_putnbr_count_unsigned(s_input *s, unsigned long n)
+int		ft_putnbr_count_unsigned(s_input *s, unsigned int n)
 {
-	unsigned long	nb;
+	unsigned int	nb;
 	int				nb_caractere_imprime;
 
-	nb = (long)n;
+	nb = n;
 	nb_caractere_imprime = 0;
+	if (nb < 0)
+	{
+		nb = nb * -1;
+		n = n * -1;
+		nb_caractere_imprime++;
+	}
 	if (nb == 0 && s->precision == 0 && s->f_dot == 1)
 	{
 		nb_caractere_imprime++;
 		return (nb_caractere_imprime);
 	}
 	if (nb > 9)
-		ft_putnbr_count(s, nb / 10);
+		ft_putnbr_count_unsigned(s, nb / 10);
 	while (n > 9)
 	{
 		n = n / 10;
+		nb_caractere_imprime++;
+	}
+	nb_caractere_imprime++;
+	return (nb_caractere_imprime);
+}
+
+int		ft_putnbr_base_count(s_input *s, unsigned int nbr, char *base)
+{
+	unsigned int	len_base;
+	unsigned int	nb;
+	int				nb_caractere_imprime;
+
+	nb = nbr;
+	len_base = ft_strlen(base);
+	nb_caractere_imprime = 0;
+	if (nb < 0)
+	{
+		nb = nb * -1;
+		nb_caractere_imprime++;
+	}
+	if (nb == 0 && s->precision == 0 && s->f_dot == 1)
+	{
+		nb_caractere_imprime++;
+		return (nb_caractere_imprime);
+	}
+	if (nb >= len_base)
+	{
+		ft_putnbr_base_count(s, (nb / len_base), base);
+	}
+	while (nbr >= len_base)
+	{
+		nbr = nbr / len_base;
 		nb_caractere_imprime++;
 	}
 	nb_caractere_imprime++;

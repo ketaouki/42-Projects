@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 08:36:40 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/02/01 14:24:51 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 10:31:34 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,24 @@ int	ft_d_i_type(s_input *s, va_list args)
 int	ft_u_x_type(s_input *s, va_list args)
 {
 	int				nb_caractere_imprime;
-	unsigned long	numunsigned;
+	unsigned int	numunsigned;
 
 	numunsigned = 0;
 	nb_caractere_imprime = 0;
 	if (s->type == 'u')
 	{
-		numunsigned = va_arg(args, long);
+		numunsigned = va_arg(args, int);
 		nb_caractere_imprime += ft_putnbr_unsigned(s, numunsigned);
+	}
+	if (s->type == 'x')
+	{
+		numunsigned = va_arg(args, int);
+		nb_caractere_imprime += ft_putnbr_base(s, numunsigned, "0123456789abcdef");
+	}
+	if (s->type == 'X')
+	{
+		numunsigned = va_arg(args, int);
+		nb_caractere_imprime += ft_putnbr_base(s, numunsigned, "0123456789ABCDEF");
 	}
 	s->type = '\0';
 	return (nb_caractere_imprime);

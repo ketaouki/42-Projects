@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 11:08:21 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/02/03 11:18:32 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 10:27:50 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,21 +120,52 @@ int		ft_putnbr(s_input *s, int n)
 	return (nb_caractere_imprime);
 }
 
-int		ft_putnbr_unsigned(s_input *s, unsigned long n)
+int		ft_putnbr_unsigned(s_input *s, unsigned int n)
 {
-	unsigned long	nb;
+	unsigned int	nb;
 	int				nb_caractere_imprime;
 
-	nb = (long)n;
+	nb = n;
 	nb_caractere_imprime = 0;
 	if (nb == 0 && s->precision == 0 && s->f_dot == 1)
 		return (nb_caractere_imprime);
 	if (nb > 9)
-		ft_putnbr(s, nb / 10);
+		ft_putnbr_unsigned(s, nb / 10);
 	ft_putchar((nb % 10) + '0');
 	while (n > 9)
 	{
 		n = n / 10;
+		nb_caractere_imprime++;
+	}
+	nb_caractere_imprime++;
+	return (nb_caractere_imprime);
+}
+
+int		ft_putnbr_base(s_input *s, unsigned int nbr, char *base)
+{
+	unsigned int	len_base;
+	unsigned int	nb;
+	int				nb_caractere_imprime;
+
+	nb = nbr;
+	len_base = ft_strlen(base);
+	nb_caractere_imprime = 0;
+	if (nb == 0 && s->precision == 0 && s->f_dot == 1)
+		return (nb_caractere_imprime);
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb = nb * -1;
+		nb_caractere_imprime++;
+	}
+	if (nb >= len_base)
+	{
+		ft_putnbr_base(s, (nb / len_base), base);
+	}
+	ft_putchar(base[nb % len_base]);
+	while (nbr >= len_base)
+	{
+		nbr = nbr / len_base;
 		nb_caractere_imprime++;
 	}
 	nb_caractere_imprime++;

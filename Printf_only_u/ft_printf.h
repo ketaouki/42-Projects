@@ -18,6 +18,7 @@ typedef struct	s_input
 
 	int		nbr_char_a_imprime;
 	int		negatif;
+	int		unsign;
 	int		width_supp_precision;
 	char	type;
 }				s_input;
@@ -45,7 +46,6 @@ int		ft_putadress_hexa(void *str, char *base);
 int		ft_putnbr(s_input *s, int n);
 int		ft_putneg(void);
 int		ft_putnbr_unsigned(s_input *s, unsigned int n);
-int		ft_putnbr_base(s_input *s, unsigned int nbr, char *base);
 
 
 int		ft_type(s_input *s, va_list args);
@@ -62,7 +62,6 @@ int		ft_putstr_count(s_input *s, char *str);
 int		ft_putadress_hexa_count(void *str, char *base);
 int		ft_putnbr_count(s_input *s, int n);
 int		ft_putnbr_count_unsigned(s_input *s, unsigned int n);
-int		ft_putnbr_base_count(s_input *s, unsigned int nbr, char *base);
 
 
 void	ft_type_count(s_input *s, va_list copy);

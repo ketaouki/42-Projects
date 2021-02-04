@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 08:50:20 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/02/03 08:25:30 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/02/04 10:31:50 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,25 @@ void	ft_d_i_type_count(s_input *s, va_list copy)
 
 void	ft_u_x_type_count(s_input *s, va_list copy)
 {
-	unsigned long	numunsigned;
+	unsigned int	numunsigned;
 
 	numunsigned = 0;
 	if (s->type == 'u')
 	{
-		numunsigned = va_arg(copy, long);
+		numunsigned = va_arg(copy, int);
 		s->nbr_char_a_imprime += ft_putnbr_count_unsigned(s, numunsigned);
 	}
+	if (s->type == 'x')
+	{
+		numunsigned = va_arg(copy, int);
+		s->nbr_char_a_imprime += ft_putnbr_base_count(s, numunsigned, "0123456789abcdef");
+	}
+	if (s->type == 'X')
+	{
+		numunsigned = va_arg(copy, int);
+		s->nbr_char_a_imprime += ft_putnbr_base_count(s, numunsigned, "0123456789ABCDEF");
+	}
+
 }
 
 void	ft_type_count(s_input *s, va_list copy)
