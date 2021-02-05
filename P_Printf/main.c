@@ -6,7 +6,7 @@
 /*   By: ketaouki <ketaouki@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 10:15:21 by ketaouki          #+#    #+#             */
-/*   Updated: 2021/02/04 11:00:48 by ketaouki         ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 07:31:20 by ketaouki         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,38 @@
 
 int	main(void)
 {
-	printf("\nUINT MAX = %d\n", UINT_MAX);
-	printf("\nUINT MAX + 1 = %d\n", UINT_MAX + 1);
 
-
-	printf("\n TEST 21\n");
-	printf(" %d ", ft_printf("%9.0u", UINT_MAX));
 	 printf("\n");
-	printf(" %d ", printf("%9.0u", UINT_MAX));
-
- 	printf("\n TEST 57\n");
-	printf(" %d ", ft_printf("%9.0u", UINT_MAX + 1));
+	printf(" %d ", printf("%0.0d", -123));
 	 printf("\n");
-	printf(" %d ", printf("%9.0u", UINT_MAX + 1));
+	printf(" %d ", printf("%0.1d", -123));
+	 printf("\n");
+	printf(" %d ", printf("%1.0d", -123));
+	 printf("\n");
+	printf(" %d ", printf("%.10d", -123));
+	 printf("\n");
+	printf(" %d ", printf("%10.d", -123));
 
-	printf("\n TEST 10\n");
-	printf(" %d ", ft_printf("%9.0u", 14578));
-	printf("\n");
-	printf(" %d ", printf("%9.0u", 14578));
+
+
+
+
+
+
+	// printf("\n TEST 21\n");
+	// printf(" %d ", ft_printf("%9.0d", UINT_MAX));
+	//  printf("\n");
+	// printf(" %d ", printf("%9.0d", UINT_MAX));
+
+ 	// printf("\n TEST 57\n");
+	// printf(" %d ", ft_printf("%9.0u", UINT_MAX + 1));
+	//  printf("\n");
+	// printf(" %d ", printf("%9.0u", UINT_MAX + 1));
+
+	// printf("\n TEST 10\n");
+	// printf(" %d ", ft_printf("%9.0u", 14578));
+	// printf("\n");
+	// printf(" %d ", printf("%9.0u", 14578));
 
 
 	// printf("\n TEST 21\n");
